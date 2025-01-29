@@ -16,6 +16,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-Bg: #cccccc;
+  --color-Error: #ff0000;
+  --color-Text: #fff;
 }
 
 @media (prefers-color-scheme: light) {

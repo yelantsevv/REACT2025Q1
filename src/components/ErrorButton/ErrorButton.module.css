@@ -1,0 +1,18 @@
+.error {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  cursor: pointer;
+  background-color: var(--color-Bg);
+  border-radius: 0.5rem;
+  border-style: double;
+  color: var(--color-Error);
+  font-size: 1rem;
+  padding: 0.5rem;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    background-color: var(--color-Error);
+    color: var(--color-Bg);
+  }
+}
