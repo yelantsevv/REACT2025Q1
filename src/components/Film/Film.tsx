@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { getData } from '../../api';
 import type { Films, FilmType } from '../../types/types';
+import styles from './Film.module.css';
 
 export default class Film extends Component<FilmType> {
   async getFilm() {
@@ -20,7 +21,12 @@ export default class Film extends Component<FilmType> {
     const film = this.props.state.get(this.props.film);
     return (
       <>
-        <li title={film?.opening_crawl}>{film?.title || 'loading...'}</li>
+        <li
+          className={film?.title ? '' : styles.loading}
+          title={film?.opening_crawl}
+        >
+          {film?.title}
+        </li>
       </>
     );
   }
