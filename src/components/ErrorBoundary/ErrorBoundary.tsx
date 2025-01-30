@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import type { Props, State } from '../../types/types';
+import type { Props, StateError } from '../../types/types';
 import styles from './ErrorBoundary.module.css';
 
-export default class ErrorBoundary extends Component<Props, State> {
+export default class ErrorBoundary extends Component<Props, StateError> {
   constructor(props: Props) {
     super(props);
     this.state = { hasError: false, error: null };
