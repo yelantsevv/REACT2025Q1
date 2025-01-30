@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Search from '../Search/Search';
 import type { State } from '../../types/types';
+import styles from './Header.module.css';
 
 export default class Header extends Component<State> {
   helperLink = (e: 'previous' | 'next') => {
@@ -9,21 +10,25 @@ export default class Header extends Component<State> {
   };
   render() {
     return (
-      <>
+      <div className={styles.header}>
         <Search {...this.props} />
-        <button
-          disabled={!this.props.previous}
-          onClick={() => this.helperLink('previous')}
-        >
-          prev
-        </button>
-        <button
-          disabled={!this.props.next}
-          onClick={() => this.helperLink('next')}
-        >
-          next
-        </button>
-      </>
+        <div className={styles.pagination}>
+          <button
+            className={styles.button}
+            disabled={!this.props.previous}
+            onClick={() => this.helperLink('previous')}
+          >
+            prev
+          </button>
+          <button
+            className={styles.button}
+            disabled={!this.props.next}
+            onClick={() => this.helperLink('next')}
+          >
+            next
+          </button>
+        </div>
+      </div>
     );
   }
 }

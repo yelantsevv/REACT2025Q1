@@ -1,0 +1,26 @@
+@import '../../App.module.css';
+
+.search {
+  composes: btn;
+  padding: 0;
+  cursor: auto;
+}
+
+.button {
+  composes: btn;
+
+  &:hover {
+    background-color: var(--color-Bg);
+  }
+}
+
+.input {
+  composes: btn;
+  max-width: 500px;
+  width: 50vw;
+
+  &:hover {
+    background-color: var(--color-Bg);
+    border-color: rgb(30, 0, 255);
+  }
+}

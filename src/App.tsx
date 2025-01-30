@@ -1,35 +1,35 @@
 import { Component } from 'react';
 import { CardList, ErrorButton, Header } from './components';
-import { getPeople, searchPeople } from './api';
-import { State } from './types/types';
+import { getData, URL } from './api';
+import { Person, State } from './types/types';
+import styles from './App.module.css';
 
 export default class App extends Component {
   state: State = {
     isLoading: true,
     onSearch: async (e) => {
       this.setState({ isLoading: true });
-      this.setState(await searchPeople(e));
+      this.setState(await getData<Person>(`${URL}?search=${e}`));
       this.setState({ isLoading: false, page: 1 });
     },
     pageLink: async (page) => {
       this.setState({ isLoading: true });
-      this.setState(await getPeople(page));
+      this.setState(await getData<Person>(page));
       this.setState({ isLoading: false });
     },
   };
 
-  async componentDidMount() {
-    this.setState(await getPeople());
-    this.setState({ isLoading: false });
+  componentDidMount() {
+    this.state.pageLink(URL);
   }
 
   render() {
     return (
-      <>
+      <div className={styles.app}>
         <Header {...this.state} />
         <CardList {...this.state} />
         <ErrorButton />
-      </>
+      </div>
     );
   }
 }

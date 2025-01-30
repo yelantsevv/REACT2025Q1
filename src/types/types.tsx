@@ -10,22 +10,11 @@ export type StateError = {
 };
 
 export type Results = {
-  birth_year: string;
-  created: string;
-  edited: string;
-  eye_color: string;
   films: string[];
   gender: string;
-  hair_color: string;
   height: string;
-  homeworld: string;
   mass: string;
   name: string;
-  skin_color: string;
-  species: string[];
-  starships: string[];
-  url: string;
-  vehicles: string[];
 };
 
 export type Person = {
@@ -40,3 +29,14 @@ export type State = {
   onSearch: (e: string) => void;
   pageLink: (page: string) => void;
 } & Partial<Person>;
+
+export type Films = {
+  title: string;
+  opening_crawl: string;
+};
+
+type MapType = Map<string, Films>;
+
+export type FilmType = { film: string } & { state: MapType };
+
+export type CardType = Results & { state: MapType };

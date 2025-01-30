@@ -17,14 +17,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --color-Bg: #cccccc;
+  --color-Bg: #808080;
   --color-Error: #ff0000;
-  --color-Text: #fff;
+  --color-Text: #ffffff;
+  --color-Btn: #656565;
+  --color-Btn-Hover: #c6c6c6;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
+    --color-Text: #000000;
+    --color-Btn: #f1f1f1;
+    --color-Bg: #ffffff;
   }
 }

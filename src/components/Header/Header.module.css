@@ -1,0 +1,28 @@
+@import '../../App.module.css';
+
+.header {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+  flex-wrap: wrap;
+  border-bottom: 1px dashed var(--color-Text);
+}
+
+.button {
+  composes: btn;
+
+  &[disabled] {
+    opacity: 0.2;
+    cursor: auto;
+  }
+
+  &:hover {
+    background-color: var(--color-Bg);
+  }
+}
+
+.pagination {
+  composes: btn;
+  cursor: auto;
+  padding: 0;
+}

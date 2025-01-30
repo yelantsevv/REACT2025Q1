@@ -1,5 +1,6 @@
 import { ChangeEvent, Component, FormEvent } from 'react';
 import type { State } from '../../types/types';
+import styles from './Search.module.css';
 
 export default class Search extends Component<State> {
   state = { inputValue: '' };
@@ -13,14 +14,17 @@ export default class Search extends Component<State> {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className={styles.search} onSubmit={this.handleSubmit}>
         <input
+          className={styles.input}
           type="text"
           value={this.state.inputValue}
           onChange={this.handleChange}
           placeholder="Search..."
         />
-        <button type="submit">Search</button>
+        <button className={styles.button} type="submit">
+          Search
+        </button>
       </form>
     );
   }
