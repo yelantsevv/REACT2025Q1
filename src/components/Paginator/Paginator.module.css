@@ -1,0 +1,20 @@
+@import '../../App.module.css';
+
+.button {
+  composes: btn;
+
+  &[disabled] {
+    opacity: 0.2;
+    cursor: auto;
+  }
+
+  &:hover {
+    background-color: var(--color-Bg);
+  }
+}
+
+.pagination {
+  composes: btn;
+  cursor: auto;
+  padding: 0;
+}
