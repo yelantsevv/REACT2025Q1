@@ -6,3 +6,4 @@ export { default as CardList } from './CardList/CardList.tsx';
 export { default as Card } from './Card/Card.tsx';
 export { default as Film } from './Film/Film.tsx';
 export { default as Spinner } from './Spinner/Spinner.tsx';
+export { default as Paginator } from './Paginator/Paginator.tsx';
