@@ -35,7 +35,7 @@ export type Films = {
   opening_crawl: string;
 };
 
-type MapType = Map<string, Films>;
+type MapType = Map<string, Films | 'loading'>;
 
 export type FilmType = { film: string } & { state: MapType };
 

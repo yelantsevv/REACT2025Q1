@@ -6,18 +6,23 @@ import styles from './Film.module.css';
 export default class Film extends Component<FilmType> {
   state: { filmData: Films | undefined } = { filmData: undefined };
 
-  async getFilm() {
-    if (this.props.state.has(this.props.film)) {
-      this.setState({ filmData: this.props.state.get(this.props.film) });
+  async getFilm(link: string) {
+    if (this.props.state.has(link)) {
+      if (this.props.state.get(link) === 'loading') {
+        setTimeout(() => this.getFilm(link), 300);
+        return;
+      }
+      this.setState({ filmData: this.props.state.get(link) });
     } else {
-      const rez = await getData<Films>(this.props.film);
-      this.props.state.set(this.props.film, rez);
+      this.props.state.set(link, 'loading');
+      const rez = await getData<Films>(link);
+      this.props.state.set(link, rez);
       this.setState({ filmData: rez });
     }
   }
 
   componentDidMount() {
-    this.getFilm();
+    this.getFilm(this.props.film);
   }
 
   render() {
