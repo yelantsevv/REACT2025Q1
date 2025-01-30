@@ -4,6 +4,7 @@ import styles from './Search.module.css';
 
 export default class Search extends Component<State> {
   state = { inputValue: '' };
+  placeholder = localStorage.getItem('search') || 'Search...';
 
   handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     this.setState({ inputValue: e.target.value });
@@ -11,6 +12,8 @@ export default class Search extends Component<State> {
   handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     this.props.onSearch(this.state.inputValue);
+    localStorage.setItem('search', this.state.inputValue);
+    this.placeholder = 'Search...';
   };
   render() {
     return (
@@ -20,7 +23,7 @@ export default class Search extends Component<State> {
           type="text"
           value={this.state.inputValue}
           onChange={this.handleChange}
-          placeholder="Search..."
+          placeholder={this.placeholder}
         />
         <button className={styles.button} type="submit">
           Search

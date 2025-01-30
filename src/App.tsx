@@ -20,7 +20,7 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    this.state.pageLink(URL);
+    this.state.onSearch(localStorage.getItem('search') ?? '');
   }
 
   render() {
