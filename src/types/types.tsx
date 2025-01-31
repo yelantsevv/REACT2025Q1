@@ -34,9 +34,3 @@ export type Films = {
   title: string;
   opening_crawl: string;
 };
-
-type MapType = Map<string, Films | 'loading'>;
-
-export type FilmType = { film: string } & { state: MapType };
-
-export type CardType = Results & { state: MapType };

@@ -1,29 +1,14 @@
 import { useEffect, useState } from 'react';
 import { getData } from '../../api';
-import type { Films, FilmType } from '../../types/types';
+import type { Films } from '../../types/types';
 import styles from './Film.module.css';
 
-export default function Film({ film, state }: FilmType) {
+export default function Film({ film }: { film: string }) {
   const [filmData, setFilmData] = useState<Films>();
 
   useEffect(() => {
-    const getFilm = async (link: string) => {
-      if (state.has(link)) {
-        if (state.get(link) === 'loading') {
-          setTimeout(() => getFilm(link), 300);
-          return;
-        }
-        setFilmData(state.get(link) as Films);
-      } else {
-        state.set(link, 'loading');
-        const rez = await getData<Films>(link);
-        state.set(link, rez);
-        setFilmData(rez);
-      }
-    };
-
-    getFilm(film);
-  }, [film, state]);
+    getData<Films>(film).then(setFilmData);
+  }, [film]);
 
   return (
     <li

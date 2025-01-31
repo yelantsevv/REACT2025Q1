@@ -14,7 +14,7 @@ export default function App() {
 
   const onSearch = async (query: string) => {
     setState((prev) => ({ ...prev, isLoading: true }));
-    const data = await getData<Person>(`${URL}?search=${query}`);
+    const data = await getData<Person>(`${URL}?search=${query}&page=1`);
     setState((prev) => ({ ...prev, ...data, isLoading: false }));
   };
 
