@@ -1,34 +1,29 @@
-import { ChangeEvent, Component, FormEvent } from 'react';
+import { FormEvent, useRef } from 'react';
 import type { State } from '../../types/types';
 import styles from './Search.module.css';
 
-export default class Search extends Component<State> {
-  state = { inputValue: '' };
-  placeholder = localStorage.getItem('search') || 'Search...';
+export default function Search({ onSearch }: State) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const placeholder = localStorage.getItem('search') || 'Search...';
 
-  handleChange = (e: ChangeEvent<HTMLInputElement>) =>
-    this.setState({ inputValue: e.target.value });
-
-  handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    this.props.onSearch(this.state.inputValue);
-    localStorage.setItem('search', this.state.inputValue);
-    this.placeholder = 'Search...';
+    const inputValue = inputRef.current?.value || '';
+    onSearch(inputValue);
+    localStorage.setItem('search', inputValue);
   };
-  render() {
-    return (
-      <form className={styles.search} onSubmit={this.handleSubmit}>
-        <input
-          className={styles.input}
-          type="text"
-          value={this.state.inputValue}
-          onChange={this.handleChange}
-          placeholder={this.placeholder}
-        />
-        <button className={styles.button} type="submit">
-          Search
-        </button>
-      </form>
-    );
-  }
+
+  return (
+    <form className={styles.search} onSubmit={handleSubmit}>
+      <input
+        className={styles.input}
+        type="text"
+        ref={inputRef}
+        placeholder={placeholder}
+      />
+      <button className={styles.button} type="submit">
+        Search
+      </button>
+    </form>
+  );
 }
