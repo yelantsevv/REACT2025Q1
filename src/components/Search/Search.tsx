@@ -1,16 +1,17 @@
 import { FormEvent, useRef } from 'react';
 import type { State } from '../../types/types';
 import styles from './Search.module.css';
+import { useLocalStorage } from '../../hooks/useLocaleStorage';
 
 export default function Search({ onSearch }: State) {
+  const [valueStorage, setStorage] = useLocalStorage('search');
   const inputRef = useRef<HTMLInputElement>(null);
-  const placeholder = localStorage.getItem('search') || 'Search...';
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const inputValue = inputRef.current?.value || '';
     onSearch(inputValue);
-    localStorage.setItem('search', inputValue);
+    setStorage(inputValue);
   };
 
   return (
@@ -19,7 +20,8 @@ export default function Search({ onSearch }: State) {
         className={styles.input}
         type="text"
         ref={inputRef}
-        placeholder={placeholder}
+        placeholder="Search..."
+        defaultValue={valueStorage}
       />
       <button className={styles.button} type="submit">
         Search

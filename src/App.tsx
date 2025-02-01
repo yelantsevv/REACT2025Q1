@@ -3,8 +3,10 @@ import { CardList, ErrorButton, Header } from './components';
 import { getData, URL } from './api';
 import { Person, State } from './types/types';
 import styles from './App.module.css';
+import { useLocalStorage } from './hooks/useLocaleStorage';
 
 export default function App() {
+  const [valueStorage] = useLocalStorage('search');
   const [state, setState] = useState<State>({
     isLoading: true,
     results: [],
@@ -17,7 +19,6 @@ export default function App() {
     const data = await getData<Person>(`${URL}?search=${query}&page=1`);
     setState((prev) => ({ ...prev, ...data, isLoading: false }));
   };
-
   const pageLink = async (page: string) => {
     setState((prev) => ({ ...prev, isLoading: true }));
     const data = await getData<Person>(page);
@@ -26,8 +27,8 @@ export default function App() {
 
   useEffect(() => {
     setState((prev) => ({ ...prev, onSearch, pageLink }));
-    onSearch(localStorage.getItem('search') ?? '');
-  }, []);
+    onSearch(valueStorage);
+  }, [valueStorage]);
 
   return (
     <div className={styles.app}>
