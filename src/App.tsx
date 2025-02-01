@@ -14,9 +14,9 @@ export default function App() {
     pageLink: async () => ({}),
   });
 
-  const onSearch = async (query: string) => {
+  const onSearch = async (query: string, page = 1) => {
     setState((prev) => ({ ...prev, isLoading: true }));
-    const data = await getData<Person>(`${URL}?search=${query}&page=1`);
+    const data = await getData<Person>(`${URL}?search=${query}&page=${page}`);
     setState((prev) => ({ ...prev, ...data, isLoading: false }));
   };
   const pageLink = async (page: string) => {
