@@ -2,12 +2,7 @@ import { Link } from 'react-router';
 import styles from './CustomLink.module.css';
 import clsx from 'clsx';
 import { helper } from '../../helpers';
-
-type CustomLinkProps = {
-  search?: string;
-  pageLink: (page: string) => void;
-  item: string | number;
-};
+import type { CustomLinkProps } from '../../types/types';
 
 export default function CustomLink({
   search,

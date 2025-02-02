@@ -1,8 +1,15 @@
 @import '../../App.module.css';
 
-.loading {
+.title {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border: dashed 1px var(--color-Text);
+  border-radius: 0.5rem;
+  height: 350px;
   width: 90%;
-  height: 1.2rem;
+}
+
+.loading {
   background: linear-gradient(
     90deg,
     #f1f1f1ec 0%,
