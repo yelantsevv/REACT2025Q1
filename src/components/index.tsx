@@ -7,3 +7,5 @@ export { default as Card } from './Card/Card.tsx';
 export { default as Film } from './Film/Film.tsx';
 export { default as Spinner } from './Spinner/Spinner.tsx';
 export { default as Paginator } from './Paginator/Paginator.tsx';
+export { default as About } from './About/About.tsx';
+export { default as CustomLink } from './CustomLink/CustomLink.tsx';

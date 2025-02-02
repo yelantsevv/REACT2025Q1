@@ -4,37 +4,33 @@ import { getData, URL } from './api';
 import { Person, State } from './types/types';
 import styles from './App.module.css';
 import { useLocalStorage } from './hooks/useLocaleStorage';
-
+import { Outlet } from 'react-router';
 export default function App() {
-  const [valueStorage] = useLocalStorage('search');
+  const [valueStorage, setStorage] = useLocalStorage('search');
   const [state, setState] = useState<State>({
     isLoading: true,
     results: [],
-    onSearch: async () => ({}),
-    pageLink: async () => ({}),
+    pageLink: async (page: string) => {
+      setState((prev) => ({ ...prev, isLoading: true }));
+      const data = await getData<Person>(URL + page);
+      setState((prev) => ({ ...prev, ...data, isLoading: false }));
+      setStorage(page);
+    },
   });
 
-  const onSearch = async (query: string, page = 1) => {
-    setState((prev) => ({ ...prev, isLoading: true }));
-    const data = await getData<Person>(`${URL}?search=${query}&page=${page}`);
-    setState((prev) => ({ ...prev, ...data, isLoading: false }));
-  };
-  const pageLink = async (page: string) => {
-    setState((prev) => ({ ...prev, isLoading: true }));
-    const data = await getData<Person>(page);
-    setState((prev) => ({ ...prev, ...data, isLoading: false }));
-  };
-
+  const { pageLink } = state;
   useEffect(() => {
-    setState((prev) => ({ ...prev, onSearch, pageLink }));
-    onSearch(valueStorage);
-  }, [valueStorage]);
+    pageLink(valueStorage);
+  }, [pageLink, valueStorage]);
 
   return (
-    <div className={styles.app}>
-      <Header {...state} />
-      <CardList {...state} />
-      <ErrorButton />
-    </div>
+    <>
+      <div className={styles.app}>
+        <Header {...state} />
+        <CardList {...state} />
+        <ErrorButton />
+      </div>
+      <Outlet />
+    </>
   );
 }

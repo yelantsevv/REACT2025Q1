@@ -26,7 +26,6 @@ export type Person = {
 
 export type State = {
   isLoading: boolean;
-  onSearch: (e: string, page?: number) => void;
   pageLink: (page: string) => void;
 } & Partial<Person>;
 

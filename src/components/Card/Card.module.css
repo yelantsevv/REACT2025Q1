@@ -2,9 +2,10 @@
 
 .card {
   composes: btn;
-  width: 15rem;
+  width: 13rem;
   cursor: auto;
   text-align: left;
+  cursor: pointer;
 
   &:hover {
     background-color: inherit;

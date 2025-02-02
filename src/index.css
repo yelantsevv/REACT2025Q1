@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 :root {
@@ -22,6 +23,7 @@
   --color-Text: #ffffff;
   --color-Btn: #656565;
   --color-Btn-Hover: #c6c6c6;
+  --color-Active: rgb(255, 220, 220);
 }
 
 @media (prefers-color-scheme: light) {
@@ -32,4 +34,8 @@
     --color-Btn: #f1f1f1;
     --color-Bg: #ffffff;
   }
+}
+
+.active {
+  background: var(--color-Active) !important;
 }

@@ -1,39 +1,32 @@
 import styles from './Paginator.module.css';
 import { State } from '../../types/types';
-export default function Paginator({
-  count,
-  previous,
-  next,
-  pageLink,
-  onSearch,
-}: State) {
+import { URL } from '../../api';
+import { helper } from '../../helpers';
+import CustomLink from '../CustomLink/CustomLink';
+export default function Paginator({ count, previous, next, pageLink }: State) {
   const number = Math.ceil((count || 0) / 10);
   const arrList = new Array(number).fill(0).map((_, i) => i + 1);
+  const { search } = helper.useSearchParams();
   return (
     <div className={styles.pagination}>
-      <button
-        className={styles.button}
-        disabled={!previous}
-        onClick={() => pageLink(previous ?? '')}
-      >
-        prev
-      </button>
+      <CustomLink
+        search={previous?.replace(URL, '')}
+        pageLink={pageLink}
+        item={'prev'}
+      />
       {arrList.map((item) => (
-        <button
-          className={styles.button}
+        <CustomLink
           key={item}
-          onClick={() => onSearch(localStorage.getItem('search') || '', item)}
-        >
-          {item}
-        </button>
+          search={`?search=${search}&page=${item}`}
+          pageLink={pageLink}
+          item={item}
+        />
       ))}
-      <button
-        className={styles.button}
-        disabled={!next}
-        onClick={() => pageLink(next ?? '')}
-      >
-        next
-      </button>
+      <CustomLink
+        search={next?.replace(URL, '')}
+        pageLink={pageLink}
+        item={'next'}
+      />
     </div>
   );
 }

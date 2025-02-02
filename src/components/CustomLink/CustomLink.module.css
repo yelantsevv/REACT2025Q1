@@ -1,0 +1,21 @@
+@import '../../App.module.css';
+
+.button {
+  composes: btn;
+  margin: 5px;
+  padding: 15px;
+  align-content: center;
+
+  &:hover {
+    background-color: var(--color-Bg);
+  }
+}
+
+.inactive {
+  opacity: 0.2;
+  cursor: auto;
+}
+
+.active {
+  background-color: var(--color-Active);
+}
