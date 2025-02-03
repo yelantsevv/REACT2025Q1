@@ -3,33 +3,42 @@ import styles from './About.module.css';
 import { helper } from '../../helpers';
 import { getData, URL } from '../../api';
 import { useEffect, useState } from 'react';
-import { Person, Results } from '../../types/types';
+import { Results, enums } from '../../types/types';
 import Film from '../Film/Film';
 import Spinner from '../Spinner/Spinner';
 
 export default function About() {
   const navigate = useNavigate();
-  const [about, setAbout] = useState<Results | null>(null);
+  const [about, setAbout] = useState<Results>();
   const id = helper.useParams();
   const query = helper.query();
-
   useEffect(() => {
-    getData(URL + query).then((e) => {
-      const [about] = (e as Person).results.filter((item) => item.name === id);
-      setAbout(about);
-    });
-  }, [query, id]);
+    getData(URL + id)
+      .then((e) => {
+        return setAbout(e as Results);
+      })
+      .catch(() => {
+        setTimeout(() => navigate(query), 2000);
+        return setAbout({ name: enums.REDIRECT } as Results);
+      });
+  }, [query, id, navigate]);
 
   const redirect = () => {
-    navigate(query);
+    navigate(query, { replace: true });
   };
 
-  if (!about) {
+  if (!about || about.name === enums.REDIRECT) {
     return (
       <div className={styles.container}>
         <div onClick={redirect} className={styles.fon} />
         <div className={styles.about}>
-          <Spinner />
+          {about?.name !== enums.REDIRECT && <Spinner />}
+          {about?.name === enums.REDIRECT && (
+            <div className={styles.redirect}>
+              <h2>Not found</h2>
+              {enums.REDIRECT}
+            </div>
+          )}
           <button className={styles.back} onClick={redirect}>
             Back
           </button>

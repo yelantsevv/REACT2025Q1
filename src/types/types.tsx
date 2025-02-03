@@ -1,5 +1,9 @@
 import { ReactNode } from 'react';
 
+export enum enums {
+  REDIRECT = 'REDIRECT',
+}
+
 export type Props = {
   children: ReactNode;
 };
