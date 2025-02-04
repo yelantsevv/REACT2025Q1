@@ -3,20 +3,14 @@ import styles from './ErrorButton.module.css';
 import { StateError } from '../../types/types';
 
 export default function ErrorButton() {
-  const [state, setState] = useState<StateError>({
-    hasError: false,
-    error: null,
-  });
+  const [state, setState] = useState<StateError>({ error: null });
 
   function throwError() {
-    setState({
-      hasError: true,
-      error: new Error('Triggered Error'),
-    });
+    setState({ error: new Error('Triggered Error') });
   }
 
-  if (state.hasError) {
-    throw new Error(`Error Boundary: ${state.error?.message}`);
+  if (state.error) {
+    throw new Error(`Error Boundary: ${state.error.message}`);
   }
 
   return (

@@ -16,11 +16,15 @@ export const getData = async <T>(page: string): Promise<T> => {
     try {
       const response = await fetch(page);
       if (!response.ok) {
-        throw new Error(response.statusText);
+        throw new Error(response.status.toString());
       }
       const data = await response.json();
       caches.set(page, data);
       return data;
+    } catch (e) {
+      if (e instanceof Error) {
+        throw new Error(e.message);
+      }
     } finally {
       pendingRequests.delete(page);
     }

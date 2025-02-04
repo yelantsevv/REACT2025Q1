@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import styles from './About.module.css';
 import { helper } from '../../helpers';
 import { getData, URL } from '../../api';
 import { useEffect, useState } from 'react';
-import { Results, enums } from '../../types/types';
+import { Results } from '../../types/types';
 import Film from '../Film/Film';
 import Spinner from '../Spinner/Spinner';
 
@@ -14,34 +14,28 @@ export default function About() {
   const query = helper.query();
   useEffect(() => {
     getData(URL + id)
-      .then((e) => {
-        return setAbout(e as Results);
-      })
-      .catch(() => {
+      .then((e) => setAbout(e as Results))
+      .catch((e) => {
         setTimeout(() => navigate(query), 2000);
-        return setAbout({ name: enums.REDIRECT } as Results);
+        setAbout({ error: e.message } as Results);
       });
   }, [query, id, navigate]);
 
-  const redirect = () => {
-    navigate(query, { replace: true });
-  };
-
-  if (!about || about.name === enums.REDIRECT) {
+  if (!about || about.error) {
     return (
       <div className={styles.container}>
-        <div onClick={redirect} className={styles.fon} />
+        <NavLink to={query} className={styles.fon} />
         <div className={styles.about}>
-          {about?.name !== enums.REDIRECT && <Spinner />}
-          {about?.name === enums.REDIRECT && (
+          {!about?.error && <Spinner />}
+          {about?.error && (
             <div className={styles.redirect}>
-              <h2>Not found</h2>
-              {enums.REDIRECT}
+              <h1>{about.error}</h1>
+              <h3>REDIRECT</h3>
             </div>
           )}
-          <button className={styles.back} onClick={redirect}>
+          <NavLink to={query} className={styles.back}>
             Back
-          </button>
+          </NavLink>
         </div>
       </div>
     );
@@ -49,11 +43,11 @@ export default function About() {
 
   return (
     <div className={styles.container}>
-      <div onClick={redirect} className={styles.fon} />
+      <NavLink to={query} className={styles.fon} />
       <div className={styles.about}>
-        <button className={styles.back} onClick={redirect}>
+        <NavLink to={query} className={styles.back}>
           Back
-        </button>
+        </NavLink>
 
         <div className={styles.info}>
           <p>

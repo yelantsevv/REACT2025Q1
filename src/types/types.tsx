@@ -1,15 +1,10 @@
 import { ReactNode } from 'react';
 
-export enum enums {
-  REDIRECT = 'REDIRECT',
-}
-
 export type Props = {
   children: ReactNode;
 };
 
 export type StateError = {
-  hasError: boolean;
   error: Error | null;
 };
 
@@ -24,6 +19,7 @@ export type Results = {
   birth_year: string;
   hair_color: string;
   url: string;
+  error: string;
 };
 
 export type Person = {
@@ -58,4 +54,9 @@ export type CustomLinkProps = {
   search?: string;
   pageLink: (page: string) => void;
   item: string | number;
+};
+
+export type ErrorPageType = {
+  error?: Error | null;
+  reset?: () => void;
 };

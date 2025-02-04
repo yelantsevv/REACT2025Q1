@@ -1,34 +1,26 @@
 import { Component } from 'react';
 import type { Props, StateError } from '../../types/types';
-import styles from './ErrorBoundary.module.css';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 export default class ErrorBoundary extends Component<Props, StateError> {
   constructor(props: Props) {
     super(props);
-    this.state = { hasError: false, error: null };
+    this.state = { error: null };
   }
 
   componentDidCatch(error: Error) {
     console.log(error.message);
-    this.setState({
-      hasError: true,
-      error,
-    });
+    this.setState({ error });
   }
 
   reset() {
-    this.setState({ hasError: false, error: null });
+    this.setState({ error: null });
   }
 
   render() {
-    if (this.state.hasError) {
+    if (this.state.error) {
       return (
-        <div className={styles.error}>
-          <h2>{this.state.error?.message}</h2>
-          <button className={styles.reset} onClick={() => this.reset()}>
-            Reset
-          </button>
-        </div>
+        <ErrorPage error={this.state.error} reset={this.reset.bind(this)} />
       );
     }
     return this.props.children;
