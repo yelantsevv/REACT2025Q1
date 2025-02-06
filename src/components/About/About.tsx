@@ -71,7 +71,7 @@ export default function About() {
         </div>
         <h2>Films</h2>
         <div className={styles.films}>
-          {about?.films.map((film) => <Film key={film} film={film} />)}
+          {about?.films?.map((film) => <Film key={film} film={film} />)}
         </div>
       </div>
     </div>

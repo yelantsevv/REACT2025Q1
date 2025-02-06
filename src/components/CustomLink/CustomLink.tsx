@@ -12,6 +12,7 @@ export default function CustomLink({
   const { page } = helper.useSearchParams();
   return (
     <Link
+      data-testid="link"
       to={{ pathname: '/', search }}
       className={clsx(
         styles.button,

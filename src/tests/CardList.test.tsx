@@ -1,0 +1,32 @@
+import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import CardList from '../components/CardList/CardList';
+import { mockResults, mockState } from './mockData';
+
+vi.mock('../components', () => ({
+  Card: vi.fn(() => <div data-testid="card" />),
+  Spinner: vi.fn(() => <div data-testid="spinner" />),
+}));
+
+describe('CardList', () => {
+  it('renders a spinner when loading', () => {
+    render(<CardList {...mockState} isLoading={true} />);
+    expect(screen.getByTestId('spinner')).toBeInTheDocument();
+  });
+
+  it('renders no results message when results are empty', () => {
+    render(<CardList {...mockState} results={[]} isLoading={false} />);
+    expect(screen.getByText('No results')).toBeInTheDocument();
+  });
+
+  it('renders a list of cards when results are provided', () => {
+    render(
+      <CardList
+        {...mockState}
+        isLoading={false}
+        results={[mockResults, mockResults]}
+      />
+    );
+    expect(screen.getAllByTestId('card')).toHaveLength(2);
+  });
+});

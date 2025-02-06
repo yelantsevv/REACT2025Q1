@@ -17,13 +17,18 @@ export default function Search({ pageLink }: State) {
   };
 
   return (
-    <form className={styles.search} onSubmit={handleSubmit}>
+    <form
+      data-testid=" search"
+      className={styles.search}
+      onSubmit={handleSubmit}
+    >
       <input
         className={styles.input}
         type="text"
         ref={inputRef}
         placeholder="Search..."
         defaultValue={search}
+        data-testid="input"
       />
       <button className={styles.button} type="submit">
         Search

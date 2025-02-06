@@ -8,7 +8,7 @@ export default function Paginator({ count, previous, next, pageLink }: State) {
   const arrList = new Array(number).fill(0).map((_, i) => i + 1);
   const { search } = helper.useSearchParams();
   return (
-    <div className={styles.pagination}>
+    <div className={styles.pagination} data-testid="paginator">
       <CustomLink
         search={previous?.replace(URL, '')}
         pageLink={pageLink}

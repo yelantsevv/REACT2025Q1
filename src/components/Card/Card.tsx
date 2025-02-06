@@ -11,7 +11,7 @@ export default function Card({ name, url, gender, height, mass }: Results) {
       to={url.replace(URL, '').slice(0, -1) + query}
       className={styles.card}
     >
-      <b>{name}</b>
+      <b data-testid="name">{name}</b>
       <p>gender: {gender}</p>
       <p>height: {height}</p>
       <p>mass: {mass}</p>

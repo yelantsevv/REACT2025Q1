@@ -12,7 +12,12 @@ export default function Film({ film }: { film: string }) {
   }, [film]);
 
   if (!filmData) {
-    return <div className={clsx(styles.title, styles.loading)} />;
+    return (
+      <div
+        data-testid="loading-film"
+        className={clsx(styles.title, styles.loading)}
+      />
+    );
   }
 
   return (
@@ -28,7 +33,7 @@ export default function Film({ film }: { film: string }) {
         <b>release </b>:{filmData.release_date}
       </p>
       <p>
-        <b>characters </b>:{filmData.characters.length}
+        <b>characters </b>:{filmData?.characters?.length}
       </p>
       <p>
         <b>planets </b>:{filmData.opening_crawl}
