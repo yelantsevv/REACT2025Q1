@@ -23,7 +23,7 @@ export default function About() {
 
   if (!about || about.error) {
     return (
-      <div className={styles.container}>
+      <div data-testid="about" className={styles.container}>
         <NavLink to={query} className={styles.fon} />
         <div className={styles.about}>
           {!about?.error && <Spinner />}

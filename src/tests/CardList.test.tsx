@@ -8,7 +8,7 @@ vi.mock('../components', () => ({
   Spinner: vi.fn(() => <div data-testid="spinner" />),
 }));
 
-describe('CardList', () => {
+describe('CardList Component', () => {
   it('renders a spinner when loading', () => {
     render(<CardList {...mockState} isLoading={true} />);
     expect(screen.getByTestId('spinner')).toBeInTheDocument();

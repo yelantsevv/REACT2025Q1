@@ -14,7 +14,7 @@ const renderWithRouter = (ui: React.ReactElement) => {
   return render(<MemoryRouter>{ui}</MemoryRouter>);
 };
 
-describe('Paginator', () => {
+describe('Paginator component', () => {
   const pageLinkMock = vi.fn();
 
   it('renders the paginator component', () => {

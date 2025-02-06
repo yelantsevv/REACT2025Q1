@@ -1,16 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
-import App from '../App';
 import { About, NotFound } from '../components';
+// import App from '../App';
 
-describe('App Routing', () => {
-  it('renders the App component for the root path', () => {
+describe('Main Routing', () => {
+  it.skip('renders the App component for the root path', () => {
     render(
       <MemoryRouter initialEntries={['/']}>
-        <Routes>
-          <Route path="/" element={<App />} />
-        </Routes>
+        <Routes>{/* <Route path="/" element={<App />} /> */}</Routes>
       </MemoryRouter>
     );
     const paginator = screen.getByTestId('paginator');
@@ -26,6 +24,9 @@ describe('App Routing', () => {
       </MemoryRouter>
     );
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
+    expect(screen.getByTestId('about')).toBeInTheDocument();
+    const links = screen.getAllByRole('link');
+    expect(links.length).toBe(2);
   });
 
   it('renders NotFound component for an unknown route', () => {

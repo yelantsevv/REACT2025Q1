@@ -1,4 +1,3 @@
-// Search.test.js
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Search } from '../components';
@@ -31,6 +30,7 @@ describe('Search', () => {
 
     expect(input).toBeInTheDocument();
     expect(button).toBeInTheDocument();
+    expect(button.className).toMatch(/button/);
   });
 
   it('uses the initial search value', () => {

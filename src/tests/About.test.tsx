@@ -22,7 +22,7 @@ vi.mock('../helpers', () => ({
 }));
 
 describe('About Component', () => {
-  it('should render loading spinner if data is not available', async () => {
+  it('should render loading spinner', async () => {
     vi.mocked(getData).mockResolvedValueOnce(undefined);
 
     render(
@@ -31,11 +31,17 @@ describe('About Component', () => {
       </MemoryRouter>
     );
     await waitFor(() => {
+      const about = screen.getByTestId('about');
+      expect(about).toBeInTheDocument();
+      expect(about.tagName).toBe('DIV');
+      expect(about.className).toMatch(/container/);
+      const links = screen.getAllByRole('link');
+      expect(links.length).toBe(2);
       expect(screen.getByTestId('spinner')).toBeInTheDocument();
     });
   });
 
-  it('should render character information when data is successfully fetched', async () => {
+  it('should render character details', async () => {
     vi.mocked(getData).mockResolvedValueOnce(mockResults);
 
     render(

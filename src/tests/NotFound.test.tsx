@@ -7,7 +7,7 @@ const renderWithRouter = (ui: React.ReactElement) => {
   return render(<MemoryRouter>{ui}</MemoryRouter>);
 };
 
-describe('NotFound', () => {
+describe('NotFound Component', () => {
   it('renders the Not Found message', () => {
     renderWithRouter(<NotFound />);
     expect(

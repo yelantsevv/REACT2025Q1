@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { ErrorButton, ErrorBoundary } from '../components';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-describe('ErrorButton', () => {
+describe('ErrorButton Component', () => {
   it('renders correctly', () => {
     render(<ErrorButton />);
     const button = screen.getByText('Error Button');

@@ -9,7 +9,7 @@ const renderWithRouter = (ui: React.ReactElement) => {
   return render(<MemoryRouter>{ui}</MemoryRouter>);
 };
 
-describe('CustomLink', () => {
+describe('CustomLink Component', () => {
   it('renders correctly', () => {
     renderWithRouter(
       <CustomLink search="?page=1" pageLink={pageLinkMock} item="1" />
