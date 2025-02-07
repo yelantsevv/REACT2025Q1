@@ -4,9 +4,10 @@ import { getData, URL } from './api';
 import { Person, State } from './types/types';
 import styles from './App.module.css';
 import { useLocalStorage } from './hooks/useLocaleStorage';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigate } from 'react-router';
 export default function App() {
   const [valueStorage, setStorage] = useLocalStorage('search');
+  const navigate = useNavigate();
   const [state, setState] = useState<State>({
     isLoading: true,
     results: [],
@@ -21,7 +22,8 @@ export default function App() {
   const { pageLink } = state;
   useEffect(() => {
     pageLink(valueStorage);
-  }, [pageLink, valueStorage]);
+    navigate(valueStorage);
+  }, [pageLink, valueStorage, navigate]);
 
   return (
     <>
