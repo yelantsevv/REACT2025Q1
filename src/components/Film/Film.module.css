@@ -1,5 +1,3 @@
-@import '../../App.module.css';
-
 .title {
   margin-top: 1rem;
   padding: 0.5rem;
@@ -7,6 +5,11 @@
   border-radius: 0.5rem;
   height: 350px;
   width: 90%;
+
+  & > .ups {
+    color: var(--color-Error);
+    text-align: center;
+  }
 }
 
 .loading {

@@ -4,19 +4,33 @@ import type { Films } from '../../types/types';
 import styles from './Film.module.css';
 import clsx from 'clsx';
 
+enum ETextError {
+  TextError = 'Ops something went wrong',
+}
 export default function Film({ film }: { film: string }) {
   const [filmData, setFilmData] = useState<Films>();
 
   useEffect(() => {
-    getData<Films>(film).then(setFilmData);
+    getData<Films>(film)
+      .then(setFilmData)
+      .catch(() => {
+        setFilmData({
+          title: ETextError.TextError,
+        } as Films);
+      });
   }, [film]);
 
-  if (!filmData) {
+  if (!filmData || filmData?.title == ETextError.TextError) {
     return (
       <div
         data-testid="loading-film"
-        className={clsx(styles.title, styles.loading)}
-      />
+        className={clsx(
+          styles.title,
+          filmData?.title != ETextError.TextError && styles.loading
+        )}
+      >
+        <p className={styles.ups}>{filmData?.title}</p>
+      </div>
     );
   }
 
