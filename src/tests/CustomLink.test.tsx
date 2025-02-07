@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { CustomLink } from '../components';
+import CustomLink from '../components/CustomLink/CustomLink';
 import { MemoryRouter } from 'react-router';
 
 const pageLinkMock = vi.fn();

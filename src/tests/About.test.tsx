@@ -73,4 +73,25 @@ describe('About Component', () => {
       expect(filmElements.length).toBe(3);
     });
   });
+  it('should handle error and redirect', async () => {
+    const mockNavigate = vi.fn();
+    vi.mocked(getData).mockRejectedValue(new Error('API Error'));
+
+    render(
+      <MemoryRouter>
+        <About />
+      </MemoryRouter>
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText('API Error')).toBeInTheDocument();
+      expect(screen.getByText('REDIRECT')).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
+      setTimeout(() => {
+        expect(mockNavigate).toBeCalledTimes(1);
+      }, 2000);
+    });
+  });
 });

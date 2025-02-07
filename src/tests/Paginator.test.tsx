@@ -1,8 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Paginator from '../components/Paginator/Paginator';
 import { MemoryRouter } from 'react-router';
 import { mockPerson, mockState } from './mockData';
+import { act } from 'react';
 
 vi.mock('../helpers', () => ({
   helper: {
@@ -10,13 +11,12 @@ vi.mock('../helpers', () => ({
   },
 }));
 
+const pageLinkMock = vi.fn();
 const renderWithRouter = (ui: React.ReactElement) => {
   return render(<MemoryRouter>{ui}</MemoryRouter>);
 };
 
 describe('Paginator component', () => {
-  const pageLinkMock = vi.fn();
-
   it('renders the paginator component', () => {
     renderWithRouter(
       <Paginator
@@ -47,7 +47,7 @@ describe('Paginator component', () => {
     expect(screen.getByText('next')).toHaveAttribute('href', '/?page=2');
   });
 
-  it('calls pageLink function on page click', () => {
+  it('calls pageLink function on page click', async () => {
     renderWithRouter(
       <Paginator
         {...mockState}
@@ -58,7 +58,12 @@ describe('Paginator component', () => {
       />
     );
     const pageTwo = screen.getByText('2');
-    pageTwo.click();
-    expect(pageLinkMock).toHaveBeenCalledWith('?search=testSearch&page=2');
+
+    await act(async () => {
+      fireEvent.click(pageTwo);
+    });
+    await waitFor(() => {
+      expect(pageLinkMock).toHaveBeenCalledWith('?search=testSearch&page=2');
+    });
   });
 });

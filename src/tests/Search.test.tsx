@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import { Search } from '../components';
+import Search from '../components/Search/Search';
 import { mockState } from './mockData';
 
 const pageLinkMock = vi.fn();

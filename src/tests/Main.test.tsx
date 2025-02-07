@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
-import { About, NotFound } from '../components';
+import About from '../components/About/About';
+import NotFound from '../components/NotFound/NotFound';
 // import App from '../App';
 
 describe('Main Routing', () => {
