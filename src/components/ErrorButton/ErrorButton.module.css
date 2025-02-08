@@ -1,0 +1,15 @@
+@import '../../App.module.css';
+
+.error {
+  composes: btn;
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  background-color: var(--color-Bg);
+  color: var(--color-Error);
+
+  &:hover {
+    background-color: var(--color-Error);
+    color: var(--color-Bg);
+  }
+}

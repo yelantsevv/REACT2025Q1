@@ -1,0 +1,19 @@
+.spinner {
+  margin-top: 10rem;
+  width: 5rem;
+  height: 5rem;
+  border: 0.2rem solid transparent;
+  border-bottom-color: var(--color-Error);
+  border-radius: 50%;
+  animation: rotation 0.8s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

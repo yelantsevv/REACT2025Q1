@@ -1,0 +1,22 @@
+@import '../../App.module.css';
+
+.card {
+  composes: btn;
+  width: 13rem;
+  cursor: auto;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background-color: inherit;
+  }
+}
+
+.films {
+  list-style-type: none;
+
+  & > li {
+    margin-left: 1rem;
+    cursor: pointer;
+  }
+}
