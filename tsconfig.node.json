@@ -21,9 +21,7 @@
     "noUncheckedSideEffectImports": true,
 
     /* Testing */
-    "types": [
-      "vitest/globals"
-    ]
+    "types": ["vitest/globals"]
   },
   "include": ["vite.config.ts"]
 }
