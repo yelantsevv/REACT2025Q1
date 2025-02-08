@@ -2,10 +2,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import styles from './Selected.module.css';
 import { clear, del } from '../../store/features/choiceSlice';
+import { CSVLink } from 'react-csv';
 
 export default function Selected() {
   const { choice } = useSelector((state: RootState) => state.choice);
   const dispatch = useDispatch();
+
+  const headers = [
+    { label: 'Name', key: 'name' },
+    { label: 'Gender', key: 'gender' },
+    { label: 'Mass', key: 'mass' },
+    { label: 'Height', key: 'height' },
+    { label: 'skin', key: 'skin_color' },
+    { label: 'Eye', key: 'eye_color' },
+    { label: 'hair', key: 'hair_color' },
+    { label: 'Url', key: 'url' },
+  ];
 
   return (
     <div className={styles.selected}>
@@ -23,10 +35,18 @@ export default function Selected() {
           </li>
         ))}
       </ul>
+      <h3>{choice.length} items are selected</h3>
       <button onClick={() => dispatch(clear())} className={styles.removeAll}>
-        Remove All {choice.length}
+        Remove All
       </button>
-      <button className={styles.saveBtn}>Save to scv</button>
+      <CSVLink
+        className={styles.saveBtn}
+        filename={choice.length + '_selected_people.csv'}
+        data={choice}
+        headers={headers}
+      >
+        Download as CSV
+      </CSVLink>
     </div>
   );
 }

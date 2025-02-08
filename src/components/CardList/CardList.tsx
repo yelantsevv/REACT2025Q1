@@ -12,6 +12,7 @@ export default function CardList({ isLoading, results }: State) {
     return (
       <div className={styles.cardList}>
         <Spinner />
+        {choice.length > 0 && <Selected />}
       </div>
     );
   }

@@ -34,6 +34,11 @@ export default function Card(props: Results) {
         checked={checked}
         onChange={(e) => onChanged(e.target.checked)}
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            onChanged(!checked.valueOf());
+          }
+        }}
       />
     </NavLink>
   );
