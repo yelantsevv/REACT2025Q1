@@ -1,6 +1,7 @@
 @import '../../App.module.css';
 
 .card {
+  position: relative;
   composes: btn;
   width: 13rem;
   cursor: auto;
@@ -9,6 +10,14 @@
 
   &:hover {
     background-color: inherit;
+  }
+
+  & > .checkbox {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 

@@ -10,3 +10,4 @@ export { default as Paginator } from './Paginator/Paginator.tsx';
 export { default as About } from './About/About.tsx';
 export { default as CustomLink } from './CustomLink/CustomLink.tsx';
 export { default as NotFound } from './NotFound/NotFound.tsx';
+export { default as Selected } from './Selected/Selected.tsx';
