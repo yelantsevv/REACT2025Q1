@@ -3,12 +3,19 @@ import { MemoryRouter } from 'react-router';
 import Card from '../components/Card/Card.tsx';
 import { describe, it, expect } from 'vitest';
 import { mockResults } from './mockData.ts';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import choice from '../store/features/choiceSlice';
+
+const mockStore = configureStore({ reducer: { choice } });
 
 describe('Card Component', () => {
   beforeEach(() => {
     render(
       <MemoryRouter>
-        <Card {...mockResults} />
+        <Provider store={mockStore}>
+          <Card {...mockResults} />
+        </Provider>
       </MemoryRouter>
     );
   });
