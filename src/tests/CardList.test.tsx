@@ -5,11 +5,9 @@ import { mockResults, mockState } from './mockData';
 
 vi.mock('../components/Card/Card.tsx', () => ({
   default: vi.fn(() => <div data-testid="card" />),
-  // Card: vi.fn(() => <div data-testid="card" />),
 }));
 vi.mock('../components/Spinner/Spinner.tsx', () => ({
   default: vi.fn(() => <div data-testid="spinner" />),
-  // Spinner: vi.fn(() => <div data-testid="spinner" />),
 }));
 
 describe('CardList Component', () => {

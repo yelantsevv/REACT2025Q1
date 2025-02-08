@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CardList, ErrorButton, Header } from './components';
 import { getData, URL } from './api';
 import { Person, State } from './types/types';
@@ -7,7 +7,7 @@ import { useLocalStorage } from './hooks/useLocaleStorage';
 import { Outlet, useNavigate } from 'react-router';
 export default function App() {
   const [valueStorage, setStorage] = useLocalStorage('search');
-  const navigate = useNavigate();
+  const navigate = useRef(useNavigate());
   const [state, setState] = useState<State>({
     isLoading: true,
     results: [],
@@ -22,8 +22,8 @@ export default function App() {
   const { pageLink } = state;
   useEffect(() => {
     pageLink(valueStorage);
-    navigate(valueStorage);
-  }, [pageLink, valueStorage, navigate]);
+    navigate.current(valueStorage);
+  }, [pageLink, valueStorage]);
 
   return (
     <>
