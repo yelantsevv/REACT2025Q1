@@ -3,8 +3,9 @@ import { CardList, ErrorButton, Header } from './components';
 import { getData, URL } from './api';
 import { Person, State } from './types/types';
 import styles from './App.module.css';
-import { useLocalStorage } from './hooks/useLocaleStorage';
+import { useLocalStorage, useTheme } from './hooks';
 import { Outlet, useNavigate } from 'react-router';
+
 export default function App() {
   const [valueStorage, setStorage] = useLocalStorage('search');
   const navigate = useRef(useNavigate());
@@ -25,14 +26,19 @@ export default function App() {
     navigate.current(valueStorage);
   }, [pageLink, valueStorage]);
 
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <>
+    <div className={styles[theme]}>
+      <button className={styles.themeBtn} onClick={toggleTheme}>
+        {theme}
+      </button>
       <div className={styles.app}>
         <Header {...state} />
         <CardList {...state} />
         <ErrorButton />
       </div>
       <Outlet />
-    </>
+    </div>
   );
 }

@@ -24,9 +24,10 @@
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px dashed var(--color-Text);
-  background: #ffffff;
+  background: var(--color-Bg);
   overflow: auto;
   direction: rtl;
+  color: var(--color-Text);
 }
 
 .back {
@@ -43,8 +44,8 @@
   flex-wrap: wrap;
   justify-content: space-around;
   gap: 15px;
-  margin-top: 1rem;
-  padding: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 1rem 0;
   border: dashed 1px var(--color-Text);
   border-radius: 0.5rem;
   width: 80%;

@@ -10,6 +10,6 @@
 
   &:hover {
     background-color: var(--color-Error);
-    color: var(--color-Bg);
+    color: var(--color-Text);
   }
 }
