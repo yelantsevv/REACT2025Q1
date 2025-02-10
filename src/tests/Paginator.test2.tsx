@@ -2,7 +2,6 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Paginator from '../components/Paginator/Paginator';
 import { MemoryRouter } from 'react-router';
-import { mockPerson, mockState } from './mockData';
 import { act } from 'react';
 
 vi.mock('../helpers', () => ({
@@ -18,45 +17,25 @@ const renderWithRouter = (ui: React.ReactElement) => {
 
 describe('Paginator component', () => {
   it('renders the paginator component', () => {
-    renderWithRouter(
-      <Paginator
-        {...mockState}
-        count={30}
-        previous={null}
-        next={null}
-        pageLink={pageLinkMock}
-      />
-    );
+    renderWithRouter(<Paginator />);
     const paginator = screen.getByTestId('paginator');
     expect(paginator).toBeInTheDocument();
   });
 
   it('renders the correct number of page links', () => {
-    renderWithRouter(
-      <Paginator {...mockState} {...mockPerson} pageLink={pageLinkMock} />
-    );
+    renderWithRouter(<Paginator />);
     const pageLinks = screen.getAllByRole('link');
     expect(pageLinks).toHaveLength(3);
   });
 
   it('renders prev and next links correctly', () => {
-    renderWithRouter(
-      <Paginator {...mockState} {...mockPerson} pageLink={pageLinkMock} />
-    );
+    renderWithRouter(<Paginator />);
     expect(screen.getByText('prev')).toHaveAttribute('href', '/?page=1');
     expect(screen.getByText('next')).toHaveAttribute('href', '/?page=2');
   });
 
   it('calls pageLink function on page click', async () => {
-    renderWithRouter(
-      <Paginator
-        {...mockState}
-        count={30}
-        previous={null}
-        next={null}
-        pageLink={pageLinkMock}
-      />
-    );
+    renderWithRouter(<Paginator />);
     const pageTwo = screen.getByText('2');
 
     await act(async () => {

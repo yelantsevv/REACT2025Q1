@@ -3,12 +3,13 @@ import styles from './CustomLink.module.css';
 import clsx from 'clsx';
 import { helper } from '../../helpers';
 import type { CustomLinkProps } from '../../types/types';
-
+import { useLocalStorage } from '../../hooks';
 export default function CustomLink({
   search,
   pageLink,
   item,
 }: CustomLinkProps) {
+  const [, setValue] = useLocalStorage('query');
   const { page } = helper.useSearchParams();
   return (
     <Link
@@ -21,6 +22,7 @@ export default function CustomLink({
       )}
       onClick={(e) => {
         if (!search) return e.preventDefault();
+        setValue(search);
         pageLink(search);
       }}
     >

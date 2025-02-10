@@ -1,15 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import Search from '../components/Search/Search';
-import { mockState } from './mockData';
 
 const pageLinkMock = vi.fn();
 const navigateMock = vi.fn(() => Promise.resolve());
 
-const props = {
-  ...mockState,
-  pageLink: pageLinkMock,
-};
 beforeEach(() => {
   vi.mock('../helpers', () => ({
     helper: {
@@ -20,7 +15,7 @@ beforeEach(() => {
   vi.mock('react-router', () => ({
     useNavigate: () => navigateMock,
   }));
-  render(<Search {...props} />);
+  render(<Search />);
 });
 
 describe('Search', () => {

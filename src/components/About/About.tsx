@@ -1,38 +1,40 @@
 import { NavLink, useNavigate } from 'react-router';
+import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import styles from './About.module.css';
 import { helper } from '../../helpers';
-import { getData, URL } from '../../api';
-import { useEffect, useState } from 'react';
-import { Results } from '../../types/types';
 import Film from '../Film/Film';
 import Spinner from '../Spinner/Spinner';
+import { useGetPeopleQuery } from '../../store/Redux/api';
 
 export default function About() {
   const navigate = useNavigate();
-  const [about, setAbout] = useState<Results>();
-  const id = helper.useParams();
+  const id = helper.useParams() || '';
   const query = helper.query();
-  useEffect(() => {
-    getData(URL + id)
-      .then((e) => setAbout(e as Results))
-      .catch((e) => {
-        setTimeout(() => navigate(query), 2000);
-        setAbout({ error: e.message } as Results);
-      });
-  }, [query, id, navigate]);
+  const { data, isLoading, error } = useGetPeopleQuery(id);
 
-  if (!about || about.error) {
+  if (isLoading) {
     return (
       <div data-testid="about" className={styles.container}>
         <NavLink to={query} className={styles.fon} />
         <div className={styles.about}>
-          {!about?.error && <Spinner />}
-          {about?.error && (
-            <div className={styles.redirect}>
-              <h1>{about.error}</h1>
-              <h3>REDIRECT</h3>
-            </div>
-          )}
+          <Spinner />
+          <NavLink to={query} className={styles.back}>
+            Back
+          </NavLink>
+        </div>
+      </div>
+    );
+  }
+  if (error) {
+    setTimeout(() => navigate(query), 2000);
+    return (
+      <div data-testid="about" className={styles.container}>
+        <NavLink to={query} className={styles.fon} />
+        <div className={styles.about}>
+          <div className={styles.redirect}>
+            <h1>{(error as FetchBaseQueryError).status}</h1>
+            <h3>REDIRECT</h3>
+          </div>
           <NavLink to={query} className={styles.back}>
             Back
           </NavLink>
@@ -51,27 +53,27 @@ export default function About() {
 
         <div className={styles.info}>
           <p>
-            <b>Actor </b>:{about.name}
+            <b>Actor </b>:{data?.name}
           </p>
           <p>
-            <b>gender </b>:{about.gender}
+            <b>gender </b>:{data?.gender}
           </p>
           <p>
-            <b>height </b>:{about.height}
+            <b>height </b>:{data?.height}
           </p>
           <p>
-            <b>mass </b>:{about.mass}
+            <b>mass </b>:{data?.mass}
           </p>
           <p>
-            <b>birth_year </b>:{about.birth_year}
+            <b>birth_year </b>:{data?.birth_year}
           </p>
           <p>
-            <b>skin </b>:{about.skin_color}
+            <b>skin </b>:{data?.skin_color}
           </p>
         </div>
         <h2>Films</h2>
         <div className={styles.films}>
-          {about?.films?.map((film) => <Film key={film} film={film} />)}
+          {data?.films?.map((film) => <Film key={film} film={film} />)}
         </div>
       </div>
     </div>

@@ -43,6 +43,14 @@
   background: var(--color-Bg);
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px dashed var(--color-Text);
+}
+
 .themeBtn,
 .btn {
   cursor: pointer;

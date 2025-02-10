@@ -5,7 +5,7 @@ import { describe, it, expect } from 'vitest';
 import { mockResults } from './mockData.ts';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import choice from '../store/features/choiceSlice';
+import choice from '../store/Redux/features/choiceSlice.ts';
 
 const mockStore = configureStore({ reducer: { choice } });
 

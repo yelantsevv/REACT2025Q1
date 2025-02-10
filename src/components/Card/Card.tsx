@@ -1,4 +1,3 @@
-import { URL } from '../../api';
 import { helper } from '../../helpers';
 import type { Results } from '../../types/types';
 import styles from './Card.module.css';
@@ -7,7 +6,8 @@ import { NavLink } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 
-import { add, del } from '../../store/features/choiceSlice';
+import { add, del } from '../../store/Redux/features/choiceSlice';
+import { URL } from '../../store/Redux/api';
 
 export default function Card(props: Results) {
   const { choice } = useSelector((state: RootState) => state.choice);

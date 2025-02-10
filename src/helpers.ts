@@ -7,7 +7,7 @@ export const helper = {
   useSearchParams: () => {
     const [searchParam] = searchParams();
     const search = searchParam.get('search') || '';
-    const page = searchParam.get('page') || 1;
+    const page = searchParam.get('page') || '1';
     return { search, page };
   },
 
@@ -15,6 +15,7 @@ export const helper = {
     const { id } = Params() || '';
     return id;
   },
+
   query: () => {
     const { search, page } = helper.useSearchParams();
     return `/?search=${search}&page=${page}`;

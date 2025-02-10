@@ -4,7 +4,6 @@ import { describe, it, expect } from 'vitest';
 const expectedComponents: Record<string, unknown> = {
   ErrorBoundary: Components.ErrorBoundary,
   ErrorButton: Components.ErrorButton,
-  Header: Components.Header,
   Search: Components.Search,
   CardList: Components.CardList,
   Card: Components.Card,
