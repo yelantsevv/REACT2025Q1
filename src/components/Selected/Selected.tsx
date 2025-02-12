@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import styles from './Selected.module.css';
-import { clear, del } from '../../store/Redux/features/choiceSlice';
 import { CSVLink } from 'react-csv';
+import styles from './Selected.module.css';
+import { RootState } from '../../store/store';
+import { clear, del } from '../../store/Redux/features/choiceSlice';
 
 export default function Selected() {
   const { choice } = useSelector((state: RootState) => state.choice);

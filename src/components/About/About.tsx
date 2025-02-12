@@ -1,9 +1,8 @@
 import { NavLink, useNavigate } from 'react-router';
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import styles from './About.module.css';
+import { Film, Spinner } from '..';
 import { helper } from '../../helpers';
-import Film from '../Film/Film';
-import Spinner from '../Spinner/Spinner';
 import { useGetPeopleQuery } from '../../store/Redux/api';
 
 export default function About() {
@@ -53,22 +52,22 @@ export default function About() {
 
         <div className={styles.info}>
           <p>
-            <b>Actor </b>:{data?.name}
+            <b>Actor</b>: {data?.name}
           </p>
           <p>
-            <b>gender </b>:{data?.gender}
+            <b>gender</b>: {data?.gender}
           </p>
           <p>
-            <b>height </b>:{data?.height}
+            <b>height</b>: {data?.height}
           </p>
           <p>
-            <b>mass </b>:{data?.mass}
+            <b>mass</b>: {data?.mass}
           </p>
           <p>
-            <b>birth_year </b>:{data?.birth_year}
+            <b>birth_year</b>: {data?.birth_year}
           </p>
           <p>
-            <b>skin </b>:{data?.skin_color}
+            <b>skin</b>: {data?.skin_color}
           </p>
         </div>
         <h2>Films</h2>

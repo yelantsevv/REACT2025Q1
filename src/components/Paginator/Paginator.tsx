@@ -1,6 +1,6 @@
 import styles from './Paginator.module.css';
 import { helper } from '../../helpers';
-import CustomLink from '../CustomLink/CustomLink';
+import { CustomLink } from '..';
 import { useState } from 'react';
 import { api, URL, useGetPeopleListQuery } from '../../store/Redux/api';
 

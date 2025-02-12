@@ -1,11 +1,9 @@
-import { helper } from '../../helpers';
-import type { Results } from '../../types/types';
-import styles from './Card.module.css';
-import { NavLink } from 'react-router';
-
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/store';
-
+import { NavLink } from 'react-router';
+import styles from './Card.module.css';
+import type { Results } from '../../types/types';
+import type { RootState } from '../../store/store';
+import { helper } from '../../helpers';
 import { add, del } from '../../store/Redux/features/choiceSlice';
 import { URL } from '../../store/Redux/api';
 

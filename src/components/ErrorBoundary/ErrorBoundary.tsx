@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import type { Props, StateError } from '../../types/types';
-import ErrorPage from '../ErrorPage/ErrorPage';
+import { ErrorPage } from '..';
 
 export default class ErrorBoundary extends Component<Props, StateError> {
   constructor(props: Props) {

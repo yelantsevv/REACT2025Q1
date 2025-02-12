@@ -1,8 +1,8 @@
-import { CardList, ErrorButton, Paginator, Search } from './components';
-import styles from './App.module.css';
-import { useLocalStorage, useTheme } from './hooks';
-import { Outlet, useNavigate } from 'react-router';
 import { useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router';
+import styles from './App.module.css';
+import { CardList, ErrorButton, Paginator, Search } from './components';
+import { useLocalStorage, useTheme } from './hooks';
 
 export default function App() {
   const navigate = useNavigate();

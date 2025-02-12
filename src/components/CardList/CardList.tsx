@@ -1,12 +1,10 @@
-import Card from '../Card/Card';
-import Spinner from '../Spinner/Spinner';
-import styles from './CardList.module.css';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import Selected from '../Selected/Selected';
+import styles from './CardList.module.css';
+import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import type { RootState } from '../../store/store';
+import { Spinner, Card, Selected } from '..';
 import { api } from '../../store/Redux/api';
 import { helper } from '../../helpers';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
 export default function CardList() {
   const { choice } = useSelector((state: RootState) => state.choice);

@@ -1,6 +1,6 @@
 import { FormEvent, useRef } from 'react';
-import styles from './Search.module.css';
 import { useNavigate } from 'react-router';
+import styles from './Search.module.css';
 import { helper } from '../../helpers';
 import { useGetPeopleListQuery } from '../../store/Redux/api';
 import { useLocalStorage } from '../../hooks';

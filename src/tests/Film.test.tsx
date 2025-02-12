@@ -43,7 +43,7 @@ describe('Film Component with RTK Query', () => {
     mockRouter(<Film film="mockFilms" />);
 
     expect(screen.getByText(mockFilms.title)).toBeInTheDocument();
-    expect(screen.getByText(`:${mockFilms.director}`)).toBeInTheDocument();
-    expect(screen.getByText(`:${mockFilms.producer}`)).toBeInTheDocument();
+    expect(screen.getByText(`: ${mockFilms.director}`)).toBeInTheDocument();
+    expect(screen.getByText(`: ${mockFilms.producer}`)).toBeInTheDocument();
   });
 });
