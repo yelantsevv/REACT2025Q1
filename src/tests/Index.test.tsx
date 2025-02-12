@@ -13,6 +13,7 @@ const expectedComponents: Record<string, unknown> = {
   About: Components.About,
   CustomLink: Components.CustomLink,
   NotFound: Components.NotFound,
+  Selected: Components.Selected,
 };
 
 describe('Component Exports', () => {

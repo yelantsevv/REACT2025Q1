@@ -1,23 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router';
+import { fireEvent, screen } from '@testing-library/react';
 import Card from '../components/Card/Card.tsx';
 import { describe, it, expect } from 'vitest';
 import { mockResults } from './mockData.ts';
-import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import choice from '../store/Redux/features/choiceSlice.ts';
-
-const mockStore = configureStore({ reducer: { choice } });
+import { mockRouter } from './mockRouter.tsx';
 
 describe('Card Component', () => {
   beforeEach(() => {
-    render(
-      <MemoryRouter>
-        <Provider store={mockStore}>
-          <Card {...mockResults} />
-        </Provider>
-      </MemoryRouter>
-    );
+    mockRouter(<Card {...mockResults} />);
   });
 
   it('renders with provided props', () => {
@@ -37,5 +26,18 @@ describe('Card Component', () => {
     const linkElement = screen.getByRole('link');
     expect(linkElement).toHaveAttribute('href');
     expect(linkElement.tagName).toBe('A');
+  });
+
+  it('click on checkbox', () => {
+    const checkbox = screen.getByTestId('checkbox');
+    expect(checkbox).toBeInTheDocument();
+    expect(checkbox).not.toBeChecked();
+    fireEvent.click(checkbox);
+    expect(checkbox).toBeChecked();
+    fireEvent.keyDown(checkbox, {
+      key: 'Enter',
+      code: 'Enter',
+    });
+    expect(checkbox).not.toBeChecked();
   });
 });

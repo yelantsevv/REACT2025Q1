@@ -10,9 +10,7 @@ export const api = createApi({
   }),
   endpoints: (builder) => ({
     getPeopleList: builder.query<Person, string>({
-      query: (query) => {
-        return query;
-      },
+      query: (query) => query,
     }),
   }),
 });
@@ -24,9 +22,7 @@ export const apiPeople = createApi({
   }),
   endpoints: (builder) => ({
     getPeople: builder.query<Results, string>({
-      query: (id) => {
-        return id;
-      },
+      query: (id) => id,
     }),
   }),
 });

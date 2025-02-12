@@ -29,10 +29,10 @@ export type Person = {
   results: Results[];
 };
 
-export type State = {
-  isLoading: boolean;
-  pageLink: (page: string) => void;
-} & Partial<Person>;
+// export type State = {
+//   isLoading: boolean;
+//   pageLink: (page: string) => void;
+// } & Partial<Person>;
 
 export type Films = {
   title: string;

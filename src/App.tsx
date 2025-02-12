@@ -16,8 +16,12 @@ export default function App() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <div className={styles[theme]}>
-      <button className={styles.themeBtn} onClick={toggleTheme}>
+    <div data-testid="theme" className={styles[theme]}>
+      <button
+        data-testid="theme-btn"
+        className={styles.themeBtn}
+        onClick={toggleTheme}
+      >
         {theme}
       </button>
       <div className={styles.app}>

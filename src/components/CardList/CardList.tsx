@@ -24,7 +24,7 @@ export default function CardList() {
 
   if (error) {
     return (
-      <div className={styles.cardList}>
+      <div data-testid="error" className={styles.cardList}>
         {(error as FetchBaseQueryError).status === 404 && (
           <p>Ops, something went wrong</p>
         )}

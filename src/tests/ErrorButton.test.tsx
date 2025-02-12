@@ -1,23 +1,18 @@
 import { describe, it, expect } from 'vitest';
 import ErrorButton from '../components/ErrorButton/ErrorButton';
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
+import { mockRouter } from './mockRouter';
 
 describe('ErrorButton Component', () => {
   it('renders correctly', () => {
-    render(<ErrorButton />);
+    mockRouter(<ErrorButton />);
     const button = screen.getByText('Error Button');
     expect(button).toBeInTheDocument();
   });
 
   it('throws an error when clicked', () => {
     console.error = vi.fn();
-
-    render(
-      <ErrorBoundary>
-        <ErrorButton />
-      </ErrorBoundary>
-    );
+    mockRouter(<ErrorButton />);
 
     const button = screen.getByText('Error Button');
     fireEvent.click(button);

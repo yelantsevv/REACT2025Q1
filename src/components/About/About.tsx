@@ -14,7 +14,7 @@ export default function About() {
 
   if (isLoading) {
     return (
-      <div data-testid="about" className={styles.container}>
+      <div data-testid="about-loading" className={styles.container}>
         <NavLink to={query} className={styles.fon} />
         <div className={styles.about}>
           <Spinner />
@@ -28,7 +28,7 @@ export default function About() {
   if (error) {
     setTimeout(() => navigate(query), 2000);
     return (
-      <div data-testid="about" className={styles.container}>
+      <div data-testid="about-error" className={styles.container}>
         <NavLink to={query} className={styles.fon} />
         <div className={styles.about}>
           <div className={styles.redirect}>
@@ -44,7 +44,7 @@ export default function About() {
   }
 
   return (
-    <div className={styles.container}>
+    <div data-testid="about" className={styles.container}>
       <NavLink to={query} className={styles.fon} />
       <div className={styles.about}>
         <NavLink to={query} className={styles.back}>

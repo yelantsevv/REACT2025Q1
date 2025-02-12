@@ -1,8 +1,8 @@
-import { Films, Person, Results, State } from '../types/types';
+import { Films, Person, Results } from '../types/types';
 
 export const mockResults: Results = {
   error: '',
-  films: [],
+  films: ['film1', 'film2', 'film3'],
   name: 'Luke Skywalker',
   url: 'https://swapi.dev/api/people/1/',
   gender: 'male',
@@ -14,16 +14,10 @@ export const mockResults: Results = {
   hair_color: 'blond',
 };
 export const mockPerson: Person = {
-  count: 1,
+  count: 30,
   previous: 'https://swapi.dev/api/people/?page=1',
   next: 'https://swapi.dev/api/people/?page=2',
-  results: [mockResults],
-};
-
-export const mockState: State = {
-  isLoading: false,
-  results: [mockResults],
-  pageLink: () => ({}),
+  results: [mockResults, mockResults, mockResults],
 };
 
 export const mockFilms: Films = {

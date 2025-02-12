@@ -1,10 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import Spinner from '../components/Spinner/Spinner';
+import { mockRouter } from './mockRouter';
 
 describe('Spinner Component', () => {
   it('renders correctly with the spinner element', () => {
-    render(<Spinner />);
+    mockRouter(<Spinner />);
 
     const spinnerElement = screen.getByTestId('spinner');
     expect(spinnerElement).toBeInTheDocument();

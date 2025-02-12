@@ -29,6 +29,7 @@ export default function Card(props: Results) {
       <p>height: {props.height}</p>
       <p>mass: {props.mass}</p>
       <input
+        data-testid="checkbox"
         className={styles.checkbox}
         type="checkbox"
         checked={checked}
