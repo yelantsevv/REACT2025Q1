@@ -1,0 +1,14 @@
+@import '../../App.module.css';
+
+.cardList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.pagination {
+  composes: btn;
+  cursor: auto;
+  padding: 0;
+}

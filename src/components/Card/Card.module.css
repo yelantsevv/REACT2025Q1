@@ -1,0 +1,31 @@
+@import '../../App.module.css';
+
+.card {
+  position: relative;
+  composes: btn;
+  width: 13rem;
+  cursor: auto;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background-color: inherit;
+  }
+
+  & > .checkbox {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.films {
+  list-style-type: none;
+
+  & > li {
+    margin-left: 1rem;
+    cursor: pointer;
+  }
+}

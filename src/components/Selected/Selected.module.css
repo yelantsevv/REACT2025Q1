@@ -1,0 +1,35 @@
+@import '../../App.module.css';
+.selected {
+  composes: btn;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  cursor: auto;
+  padding: 0;
+
+  &:hover {
+    background-color: var(--color-Bg);
+  }
+}
+
+.selected:hover {
+  cursor: auto;
+  padding: 0;
+}
+
+.selectedItem {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 1rem;
+  align-items: center;
+}
+
+.removeBtn {
+  composes: btn;
+  padding: 5px;
+  margin: 2px 10px;
+}
+.removeAll,
+.saveBtn {
+  composes: btn;
+}

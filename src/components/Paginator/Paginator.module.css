@@ -1,0 +1,9 @@
+@import '../../App.module.css';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  composes: btn;
+  cursor: auto;
+  padding: 0;
+}
