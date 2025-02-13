@@ -1,6 +1,4 @@
-import { screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import CardList from '../components/CardList/CardList.tsx';
+import { CardList } from '../components';
 import { mockRouter } from './mockRouter.tsx';
 import { mockPerson } from './mockData.ts';
 import { api } from '../store/Redux/api';
@@ -14,7 +12,6 @@ vi.mock(
     const actual = await importOriginal();
     return {
       ...actual,
-      useGetPeopleListQuery: vi.fn(),
       api: {
         ...actual.api,
         useGetPeopleListQuery: vi.fn(),
@@ -36,15 +33,6 @@ vi.mock(
 
 vi.mock('../components/Card/Card.tsx', () => ({
   default: vi.fn(() => <div data-testid="card" />),
-}));
-vi.mock('../components/Spinner/Spinner.tsx', () => ({
-  default: vi.fn(() => <div data-testid="spinner" />),
-}));
-
-vi.mock('../helpers.ts', () => ({
-  helper: {
-    query: vi.fn(),
-  },
 }));
 
 describe('CardList Component', () => {

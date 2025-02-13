@@ -1,6 +1,4 @@
-import { screen } from '@testing-library/react';
-import { vi } from 'vitest';
-import About from '../components/About/About';
+import { About } from '../components';
 import { mockResults } from './mockData';
 import { mockRouter } from './mockRouter';
 import { useGetPeopleQuery } from '../store/Redux/api';
@@ -17,12 +15,6 @@ vi.mock(
     };
   }
 );
-vi.mock('../helpers.ts', () => ({
-  helper: {
-    useParams: vi.fn(),
-    query: vi.fn(),
-  },
-}));
 
 vi.mock('../components/Film/Film', () => ({
   default: vi.fn(() => <div data-testid="film-component" />),

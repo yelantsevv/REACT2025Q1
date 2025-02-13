@@ -1,6 +1,4 @@
-import { screen } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import Paginator from '../components/Paginator/Paginator';
+import { Paginator } from '../components';
 import { mockRouter } from './mockRouter';
 
 vi.mock(
@@ -23,13 +21,6 @@ vi.mock(
     };
   }
 );
-
-vi.mock('../helpers', () => ({
-  helper: {
-    query: vi.fn(() => '?search=luke'),
-    useSearchParams: vi.fn(() => ({ search: 'luke' })),
-  },
-}));
 
 vi.mock('../components/CustomLink/CustomLink', () => ({
   default: vi.fn(({ search }) => <div data-testid="custom-link">{search}</div>),

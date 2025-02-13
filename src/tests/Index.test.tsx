@@ -1,5 +1,4 @@
 import * as Components from '../components';
-import { describe, it, expect } from 'vitest';
 
 const expectedComponents: Record<string, unknown> = {
   ErrorBoundary: Components.ErrorBoundary,

@@ -1,6 +1,4 @@
-import { fireEvent, screen } from '@testing-library/react';
-import Card from '../components/Card/Card.tsx';
-import { describe, it, expect } from 'vitest';
+import { Card } from '../components';
 import { mockResults } from './mockData.ts';
 import { mockRouter } from './mockRouter.tsx';
 

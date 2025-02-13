@@ -1,6 +1,4 @@
-import { describe, it, expect } from 'vitest';
-import ErrorButton from '../components/ErrorButton/ErrorButton';
-import { fireEvent, screen } from '@testing-library/react';
+import { ErrorButton } from '../components';
 import { mockRouter } from './mockRouter';
 
 describe('ErrorButton Component', () => {

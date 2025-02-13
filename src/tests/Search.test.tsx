@@ -1,6 +1,4 @@
-import { screen, fireEvent, render } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import Search from '../components/Search/Search';
+import { Search } from '../components';
 
 const navigateMock = vi.fn();
 const setQueryMock = vi.fn();
@@ -25,10 +23,6 @@ vi.mock('../store/Redux/api', () => ({
 
 beforeEach(() => {
   render(<Search />);
-});
-
-afterEach(() => {
-  vi.clearAllMocks();
 });
 
 describe('Search Component', () => {

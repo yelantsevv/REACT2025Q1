@@ -1,7 +1,4 @@
-import { describe, it, expect } from 'vitest';
-import { fireEvent, screen } from '@testing-library/react';
-import About from '../components/About/About';
-import NotFound from '../components/NotFound/NotFound';
+import { About, NotFound } from '../components';
 import { mockRouter } from './mockRouter';
 import App from '../App';
 

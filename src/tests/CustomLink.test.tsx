@@ -1,6 +1,4 @@
-import { screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import CustomLink from '../components/CustomLink/CustomLink';
+import { CustomLink } from '../components';
 import { mockRouter } from './mockRouter';
 
 const pageLinkMock = vi.fn();

@@ -1,6 +1,4 @@
-import { screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
-import NotFound from '../components/NotFound/NotFound';
+import { NotFound } from '../components';
 import { mockRouter } from './mockRouter';
 
 describe('NotFound Component', () => {

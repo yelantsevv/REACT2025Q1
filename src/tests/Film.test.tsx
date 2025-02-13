@@ -1,6 +1,4 @@
-import { screen } from '@testing-library/react';
-import { describe, it, expect, vi } from 'vitest';
-import Film from '../components/Film/Film';
+import { Film } from '../components';
 import { mockFilms } from './mockData';
 import { mockRouter } from './mockRouter';
 import { useGetFilmQuery } from '../store/Redux/api';

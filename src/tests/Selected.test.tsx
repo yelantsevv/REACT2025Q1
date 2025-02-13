@@ -1,6 +1,4 @@
-import { screen, fireEvent, render } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import Selected from '../components/Selected/Selected';
+import { Selected } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
 import { del, clear } from '../store/Redux/features/choiceSlice';
 
@@ -19,10 +17,6 @@ beforeEach(() => {
   vi.mocked(useDispatch).mockReturnValue(mockDispatch);
 
   render(<Selected />);
-});
-
-afterEach(() => {
-  vi.clearAllMocks();
 });
 
 describe('Selected Component', () => {
