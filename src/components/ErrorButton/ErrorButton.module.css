@@ -1,7 +1,5 @@
-@import '../../App.module.css';
-
 .error {
-  composes: btn;
+  composes: btn from '../../pages/App.module.css';
   position: fixed;
   bottom: 5%;
   right: 5%;

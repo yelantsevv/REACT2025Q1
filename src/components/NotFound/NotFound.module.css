@@ -1,5 +1,3 @@
-@import '../../App.module.css';
-
 .wrapper {
   height: 100vh;
   width: 100vw;
@@ -13,5 +11,5 @@
 }
 
 .button {
-  composes: btn;
+  composes: btn from '../../pages/App.module.css';
 }

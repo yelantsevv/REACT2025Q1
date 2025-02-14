@@ -1,29 +1,25 @@
-import { Link } from 'react-router';
 import styles from './CustomLink.module.css';
 import clsx from 'clsx';
-import { helper } from '../../helpers';
 import type { CustomLinkProps } from '../../types/types';
+import Link from 'next/link';
 import { useLocalStorage } from '../../hooks';
-export default function CustomLink({
-  search,
-  pageLink,
-  item,
-}: CustomLinkProps) {
+import { useRouter } from 'next/router';
+export default function CustomLink({ query, item }: CustomLinkProps) {
+  const path = useRouter();
+  const { page } = path.query;
   const [, setValue] = useLocalStorage('query');
-  const { page } = helper.useSearchParams();
   return (
     <Link
+      href={query || ''}
       data-testid="link"
-      to={{ pathname: '/', search }}
       className={clsx(
         styles.button,
-        !search && styles.inactive,
-        page == item && styles.active
+        !query && styles.inactive,
+        (page || '1') == item && styles.active
       )}
       onClick={(e) => {
-        if (!search) return e.preventDefault();
-        setValue(search);
-        pageLink(search);
+        if (!query) return e.preventDefault();
+        setValue(query);
       }}
     >
       {item}

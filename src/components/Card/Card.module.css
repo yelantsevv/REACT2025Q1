@@ -1,8 +1,6 @@
-@import '../../App.module.css';
-
 .card {
   position: relative;
-  composes: btn;
+  composes: btn from '../../pages/App.module.css';
   width: 13rem;
   cursor: auto;
   text-align: left;

@@ -1,6 +1,5 @@
-@import '../../App.module.css';
 .selected {
-  composes: btn;
+  composes: btn from '../../pages/App.module.css';
   position: absolute;
   bottom: 0.5rem;
   left: 0.5rem;
@@ -25,11 +24,11 @@
 }
 
 .removeBtn {
-  composes: btn;
+  composes: btn from '../../pages/App.module.css';
   padding: 5px;
   margin: 2px 10px;
 }
 .removeAll,
 .saveBtn {
-  composes: btn;
+  composes: btn from '../../pages/App.module.css';
 }

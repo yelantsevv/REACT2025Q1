@@ -1,42 +1,52 @@
-import { NavLink, useNavigate } from 'react-router';
 import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import styles from './About.module.css';
 import { Film, Spinner } from '..';
-import { helper } from '../../helpers';
 import { useGetPeopleQuery } from '../../store/Redux/api';
-
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 export default function About() {
-  const navigate = useNavigate();
-  const id = helper.useParams() || '';
-  const query = helper.query();
-  const { data, isLoading, error } = useGetPeopleQuery(id);
+  const { id, search, page } = useRouter().query;
+
+  const { data, isLoading, error } = useGetPeopleQuery(id as string);
 
   if (isLoading) {
     return (
       <div data-testid="about-loading" className={styles.container}>
-        <NavLink to={query} className={styles.fon} />
+        <Link
+          href={{ pathname: '/', query: { search, page } }}
+          className={styles.fon}
+        />
         <div className={styles.about}>
           <Spinner />
-          <NavLink to={query} className={styles.back}>
+          <Link
+            href={{ pathname: '/', query: { search, page } }}
+            className={styles.back}
+          >
             Back
-          </NavLink>
+          </Link>
         </div>
       </div>
     );
   }
   if (error) {
-    setTimeout(() => navigate(query), 2000);
+    // setTimeout(() => navigate(query), 2000);
     return (
       <div data-testid="about-error" className={styles.container}>
-        <NavLink to={query} className={styles.fon} />
+        <Link
+          href={{ pathname: '/', query: { search, page } }}
+          className={styles.fon}
+        />
         <div className={styles.about}>
           <div className={styles.redirect}>
             <h1>{(error as FetchBaseQueryError).status}</h1>
             <h3>REDIRECT</h3>
           </div>
-          <NavLink to={query} className={styles.back}>
+          <Link
+            href={{ pathname: '/', query: { search, page } }}
+            className={styles.back}
+          >
             Back
-          </NavLink>
+          </Link>
         </div>
       </div>
     );
@@ -44,11 +54,17 @@ export default function About() {
 
   return (
     <div data-testid="about" className={styles.container}>
-      <NavLink to={query} className={styles.fon} />
+      <Link
+        href={{ pathname: '/', query: { search, page } }}
+        className={styles.fon}
+      />
       <div className={styles.about}>
-        <NavLink to={query} className={styles.back}>
+        <Link
+          href={{ pathname: '/', query: { search, page } }}
+          className={styles.back}
+        >
           Back
-        </NavLink>
+        </Link>
 
         <div className={styles.info}>
           <p>

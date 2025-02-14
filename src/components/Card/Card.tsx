@@ -1,25 +1,25 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router';
 import styles from './Card.module.css';
 import type { Results } from '../../types/types';
 import type { RootState } from '../../store/store';
-import { helper } from '../../helpers';
 import { add, del } from '../../store/Redux/features/choiceSlice';
 import { URL } from '../../store/Redux/api';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Card(props: Results) {
   const { choice } = useSelector((state: RootState) => state.choice);
   const dispatch = useDispatch();
-
-  const query = helper.query();
+  const path = useRouter();
+  const { page, search } = path.query;
 
   const onChanged = (e: boolean) => {
     dispatch(e ? add(props) : del(props.name));
   };
   const checked = choice.some((card) => card.name === props.name);
   return (
-    <NavLink
-      to={props.url.replace(URL, '').slice(0, -1) + query}
+    <Link
+      href={{ pathname: props.url.replace(URL, ''), query: { search, page } }}
       className={styles.card}
     >
       <b data-testid="name">{props.name}</b>
@@ -39,6 +39,6 @@ export default function Card(props: Results) {
           }
         }}
       />
-    </NavLink>
+    </Link>
   );
 }

@@ -1,7 +1,5 @@
-@import '../../App.module.css';
-
 .button {
-  composes: btn;
+  composes: btn from '../../pages/App.module.css';
   margin: 5px;
   padding: 15px;
   align-content: center;

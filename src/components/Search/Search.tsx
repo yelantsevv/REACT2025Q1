@@ -1,23 +1,20 @@
+'use client';
 import { FormEvent, useRef } from 'react';
-import { useNavigate } from 'react-router';
 import styles from './Search.module.css';
-import { helper } from '../../helpers';
-import { useGetPeopleListQuery } from '../../store/Redux/api';
+import { useRouter } from 'next/router';
 import { useLocalStorage } from '../../hooks';
 
 export default function Search() {
-  const [query, setQuery] = useLocalStorage('query');
-  useGetPeopleListQuery(query);
+  const router = useRouter();
+  const [, setQuery] = useLocalStorage('query');
 
-  const { search } = helper.useSearchParams();
-  const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const inputValue = inputRef.current?.value || '';
     setQuery(`?search=${inputValue}`);
-    navigate(`?search=${inputValue}`);
+    router.push(`?search=${inputValue}`);
   };
 
   return (
@@ -31,7 +28,7 @@ export default function Search() {
         type="text"
         ref={inputRef}
         placeholder="Search..."
-        defaultValue={search}
+        defaultValue={router.query.search}
         data-testid="input"
       />
       <button className={styles.button} type="submit">

@@ -4,13 +4,16 @@ import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import type { RootState } from '../../store/store';
 import { Spinner, Card, Selected } from '..';
 import { api } from '../../store/Redux/api';
-import { helper } from '../../helpers';
+import { useRouter } from 'next/router';
 
 export default function CardList() {
   const { choice } = useSelector((state: RootState) => state.choice);
+  const router = useRouter();
+  const { search = '', page = '1' } = router.query;
 
-  const { isFetching, data, error } = api.useGetPeopleListQuery(helper.query());
-
+  const { isFetching, data, error } = api.useGetPeopleListQuery(
+    `/?search=${search}&page=${page}`
+  );
   if (isFetching) {
     return (
       <div className={styles.cardList}>
@@ -34,7 +37,7 @@ export default function CardList() {
   return (
     <div className={styles.cardList}>
       {data?.results?.length === 0 && <p>No results</p>}
-      {data?.results.map((item, index) => <Card key={index} {...item} />)}
+      {data?.results?.map((item, index) => <Card key={index} {...item} />)}
       {choice.length > 0 && <Selected />}
     </div>
   );

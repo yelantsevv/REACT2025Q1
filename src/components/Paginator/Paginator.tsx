@@ -1,38 +1,29 @@
 import styles from './Paginator.module.css';
-import { helper } from '../../helpers';
 import { CustomLink } from '..';
-import { useState } from 'react';
-import { api, URL, useGetPeopleListQuery } from '../../store/Redux/api';
+import { useRouter } from 'next/router';
+import { api, URL } from '../../store/Redux/api';
 
 export default function Paginator() {
-  const [link, setLink] = useState(helper.query());
-  useGetPeopleListQuery(link);
-
-  const { data } = api.useGetPeopleListQuery(helper.query());
+  const router = useRouter();
+  const { search = '', page = '1' } = router.query;
+  const { data } = api.useGetPeopleListQuery(`/?search=${search}&page=${page}`);
 
   const number = Math.ceil((data?.count || 0) / 10);
   const arrList = new Array(number).fill(0).map((_, i) => i + 1);
-  const { search } = helper.useSearchParams();
   return (
     <div className={styles.pagination} data-testid="paginator">
       <CustomLink
-        search={data?.previous?.replace(URL, '')}
-        pageLink={setLink}
+        query={data?.previous?.replace(URL, '') || ''}
         item={'prev'}
       />
       {arrList.map((item) => (
         <CustomLink
           key={item}
-          search={`?search=${search}&page=${item}`}
-          pageLink={setLink}
+          query={`?search=${search}&page=${item}`}
           item={item}
         />
       ))}
-      <CustomLink
-        search={data?.next?.replace(URL, '')}
-        pageLink={setLink}
-        item={'next'}
-      />
+      <CustomLink query={data?.next?.replace(URL, '') || ''} item={'next'} />
     </div>
   );
 }

@@ -1,9 +1,7 @@
-@import '../../App.module.css';
-
 .pagination {
   display: flex;
   justify-content: center;
-  composes: btn;
+  composes: btn from '../../pages/App.module.css';
   cursor: auto;
   padding: 0;
 }
