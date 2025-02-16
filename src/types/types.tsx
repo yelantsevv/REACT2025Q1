@@ -47,7 +47,6 @@ export type Films = {
 
 export type CustomLinkProps = {
   search?: string;
-  pageLink: (page: string) => void;
   item: string | number;
 };
 
