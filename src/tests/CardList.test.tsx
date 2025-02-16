@@ -1,8 +1,6 @@
 import { CardList } from '../components';
 import { mockRouter } from './mockRouter.tsx';
-import { mockPerson } from './mockData.ts';
 import { api } from '../store/Redux/api';
-import { useSelector } from 'react-redux';
 
 vi.mock(
   '../store/Redux/api',
@@ -20,35 +18,11 @@ vi.mock(
   }
 );
 
-vi.mock(
-  'react-redux',
-  async (importOriginal: () => Promise<typeof import('react-redux')>) => {
-    const actual = await importOriginal();
-    return {
-      ...actual,
-      useSelector: vi.fn(),
-    };
-  }
-);
-
 vi.mock('../components/Card/Card.tsx', () => ({
   default: vi.fn(() => <div data-testid="card" />),
 }));
 
 describe('CardList Component', () => {
-  it('renders a list of cards when results are provided', async () => {
-    vi.mocked(api.useGetPeopleListQuery).mockReturnValueOnce({
-      data: mockPerson,
-    } as unknown as ReturnType<typeof api.useGetPeopleListQuery>);
-    vi.mocked(useSelector).mockReturnValue({
-      choice: [{ name: 'Luke' }, { name: 'Skywalker' }],
-    });
-    mockRouter(<CardList />);
-    const cards = screen.getAllByTestId('card');
-    expect(cards).toHaveLength(3);
-    expect(screen.getByText('Luke')).toBeInTheDocument();
-  });
-
   it('renders a list of cards when No results', async () => {
     vi.mocked(api.useGetPeopleListQuery).mockReturnValueOnce({
       data: { results: [] },

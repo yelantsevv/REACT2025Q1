@@ -1,12 +1,21 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
 import styles from './App.module.css';
-import { CardList, ErrorButton, Paginator, Search } from './components';
+import {
+  CardList,
+  ErrorButton,
+  Paginator,
+  Search,
+  Selected,
+} from './components';
 import { useLocalStorage, useTheme } from './hooks';
+import { useSelector } from 'react-redux';
+import { RootState } from './store/store';
 
 export default function App() {
   const navigate = useNavigate();
   const [query] = useLocalStorage('query');
+  const { choice } = useSelector((state: RootState) => state.choice);
 
   useEffect(() => {
     navigate(query);
@@ -31,6 +40,7 @@ export default function App() {
         </div>
         <CardList />
         <ErrorButton />
+        {choice.length > 0 && <Selected />}
       </div>
       <Outlet />
     </div>
