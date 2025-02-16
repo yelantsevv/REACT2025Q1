@@ -2,11 +2,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import styles from './Card.module.css';
 import type { Results } from '../../types/types';
 import type { RootState } from '../../store/store';
-import { add, del } from '../../store/Redux/features/choiceSlice';
-import { URL } from '../../store/Redux/api';
+import { add, del } from '../../store/features/choiceSlice';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
+import { URL } from '../../store/api';
 export default function Card(props: Results) {
   const { choice } = useSelector((state: RootState) => state.choice);
   const dispatch = useDispatch();
@@ -19,7 +18,10 @@ export default function Card(props: Results) {
   const checked = choice.some((card) => card.name === props.name);
   return (
     <Link
-      href={{ pathname: props.url.replace(URL, ''), query: { search, page } }}
+      href={{
+        pathname: props.url.replace(URL, ''),
+        query: { search, page },
+      }}
       className={styles.card}
     >
       <b data-testid="name">{props.name}</b>

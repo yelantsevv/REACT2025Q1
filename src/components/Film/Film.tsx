@@ -1,46 +1,24 @@
+import { Films } from '../../types/types';
 import styles from './Film.module.css';
-import clsx from 'clsx';
-import { useGetFilmQuery } from '../../store/Redux/api';
-import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 
-export default function Film({ film }: { film: string }) {
-  const { data, isLoading, error } = useGetFilmQuery(film);
-
-  if (isLoading) {
-    return (
-      <div
-        data-testid="loading-film"
-        className={clsx(styles.title, styles.loading)}
-      ></div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div data-testid="loading-film" className={styles.title}>
-        <p className={styles.ups}>{(error as FetchBaseQueryError).status}</p>
-        <p className={styles.ups}>Ops something went wrong</p>
-      </div>
-    );
-  }
-
+export default function Film({ film }: { film: Films }) {
   return (
     <div className={styles.title}>
-      <h2>{data?.title}</h2>
+      <h2>{film?.title}</h2>
       <p>
-        <b>Director</b>: {data?.director}
+        <b>Director</b>: {film?.director}
       </p>
       <p>
-        <b>Producer</b>: {data?.producer}
+        <b>Producer</b>: {film?.producer}
       </p>
       <p>
-        <b>release</b>: {data?.release_date}
+        <b>release</b>: {film?.release_date}
       </p>
       <p>
-        <b>characters</b>: {data?.characters?.length}
+        <b>characters</b>: {film?.characters?.length}
       </p>
       <p>
-        <b>planets</b>: {data?.opening_crawl}
+        <b>planets</b>: {film?.opening_crawl}
       </p>
     </div>
   );

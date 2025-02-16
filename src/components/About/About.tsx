@@ -1,56 +1,10 @@
-import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import styles from './About.module.css';
-import { Film, Spinner } from '..';
-import { useGetPeopleQuery } from '../../store/Redux/api';
+import { Film } from '..';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-export default function About() {
-  const { id, search, page } = useRouter().query;
-
-  const { data, isLoading, error } = useGetPeopleQuery(id as string);
-
-  if (isLoading) {
-    return (
-      <div data-testid="about-loading" className={styles.container}>
-        <Link
-          href={{ pathname: '/', query: { search, page } }}
-          className={styles.fon}
-        />
-        <div className={styles.about}>
-          <Spinner />
-          <Link
-            href={{ pathname: '/', query: { search, page } }}
-            className={styles.back}
-          >
-            Back
-          </Link>
-        </div>
-      </div>
-    );
-  }
-  if (error) {
-    // setTimeout(() => navigate(query), 2000);
-    return (
-      <div data-testid="about-error" className={styles.container}>
-        <Link
-          href={{ pathname: '/', query: { search, page } }}
-          className={styles.fon}
-        />
-        <div className={styles.about}>
-          <div className={styles.redirect}>
-            <h1>{(error as FetchBaseQueryError).status}</h1>
-            <h3>REDIRECT</h3>
-          </div>
-          <Link
-            href={{ pathname: '/', query: { search, page } }}
-            className={styles.back}
-          >
-            Back
-          </Link>
-        </div>
-      </div>
-    );
-  }
+import { Results } from '../../types/types';
+export default function About({ people }: { people: Results }) {
+  const { search, page } = useRouter().query;
 
   return (
     <div data-testid="about" className={styles.container}>
@@ -68,27 +22,29 @@ export default function About() {
 
         <div className={styles.info}>
           <p>
-            <b>Actor</b>: {data?.name}
+            <b>Actor</b>: {people?.name}
           </p>
           <p>
-            <b>gender</b>: {data?.gender}
+            <b>gender</b>: {people?.gender}
           </p>
           <p>
-            <b>height</b>: {data?.height}
+            <b>height</b>: {people?.height}
           </p>
           <p>
-            <b>mass</b>: {data?.mass}
+            <b>mass</b>: {people?.mass}
           </p>
           <p>
-            <b>birth_year</b>: {data?.birth_year}
+            <b>birth_year</b>: {people?.birth_year}
           </p>
           <p>
-            <b>skin</b>: {data?.skin_color}
+            <b>skin</b>: {people?.skin_color}
           </p>
         </div>
         <h2>Films</h2>
         <div className={styles.films}>
-          {data?.films?.map((film) => <Film key={film} film={film} />)}
+          {people?.films?.map((film, index) => (
+            <Film key={index} film={film} />
+          ))}
         </div>
       </div>
     </div>

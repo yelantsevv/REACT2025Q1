@@ -1,4 +1,6 @@
 .spinner {
+  position: absolute;
+  z-index: 2;
   margin-top: 10rem;
   width: 5rem;
   height: 5rem;
