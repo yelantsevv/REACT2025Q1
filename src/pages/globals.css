@@ -6,7 +6,7 @@
 }
 
 :root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-family: var(--font-inter);
   font-weight: 400;
   --color-Error: #ff0000;

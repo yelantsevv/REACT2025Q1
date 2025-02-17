@@ -61,3 +61,8 @@ export type ThemeContextType = {
   theme: Theme;
   toggleTheme: () => void;
 } | null;
+
+export type HomeProps = {
+  person: Person;
+  people: Results;
+};

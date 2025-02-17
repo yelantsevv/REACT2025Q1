@@ -1,25 +1,5 @@
 import { Films, Person, Results } from '../types/types';
 
-export const mockResults: Results = {
-  error: '',
-  films: ['film1', 'film2', 'film3'],
-  name: 'Luke Skywalker',
-  url: 'https://swapi.dev/api/people/1/',
-  gender: 'male',
-  height: '172',
-  mass: '77',
-  skin_color: 'caucasian',
-  eye_color: 'blue',
-  birth_year: '19BBY',
-  hair_color: 'blond',
-};
-export const mockPerson: Person = {
-  count: 30,
-  previous: 'https://swapi.dev/api/people/?page=1',
-  next: 'https://swapi.dev/api/people/?page=2',
-  results: [mockResults, mockResults, mockResults],
-};
-
 export const mockFilms: Films = {
   title: 'The Empire Strikes Back',
   opening_crawl: 'It is a dark time for the Luke Skywalke...',
@@ -61,4 +41,24 @@ export const mockFilms: Films = {
   created: '2014-12-12T11:26:24.656000Z',
   edited: '2014-12-15T13:07:53.386000Z',
   url: 'https://swapi.dev/api/films/2/',
+};
+
+export const mockResults: Results = {
+  error: '',
+  films: [mockFilms, mockFilms, mockFilms],
+  name: 'Luke Skywalker',
+  url: 'https://swapi.dev/api/people/1/',
+  gender: 'male',
+  height: '172',
+  mass: '77',
+  skin_color: 'caucasian',
+  eye_color: 'blue',
+  birth_year: '19BBY',
+  hair_color: 'blond',
+};
+export const mockPerson: Person = {
+  count: 30,
+  previous: 'https://swapi.dev/api/people/?page=1',
+  next: 'https://swapi.dev/api/people/?page=2',
+  results: [mockResults, mockResults, mockResults],
 };

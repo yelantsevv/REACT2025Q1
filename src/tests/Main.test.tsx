@@ -1,31 +1,51 @@
-import { About, NotFound } from '../components';
+import Home from '../pages/index';
+import { useRouter } from 'next/router';
+import { useTheme } from '../hooks/useTheme';
 import { mockRouter } from './mockRouter';
-import App from '../App';
+import { mockPerson, mockResults } from './mockData';
 
-describe('Main Routing', () => {
-  it('renders the App component for the root path', () => {
-    mockRouter(<App />, '/');
-    const theme = screen.getByTestId('theme');
-    const themeBtn = screen.getByTestId('theme-btn');
+vi.mock('next/router', () => ({
+  useRouter: vi.fn(),
+}));
 
-    expect(theme.className).toMatch(/light/);
-    expect(themeBtn).toBeInTheDocument();
-    fireEvent.click(themeBtn);
-    expect(theme.className).toMatch(/dark/);
+vi.mock('../hooks/useTheme', () => ({
+  useTheme: vi.fn(),
+}));
+
+describe('Home Page', () => {
+  let routerMock: ReturnType<typeof useRouter>;
+  let themeMock: ReturnType<typeof useTheme>;
+
+  beforeEach(() => {
+    routerMock = {
+      asPath: '/',
+      query: {},
+      events: {
+        on: vi.fn(),
+        off: vi.fn(),
+      },
+    } as unknown as ReturnType<typeof useRouter>;
+    vi.mocked(useRouter).mockReturnValue(routerMock);
+
+    themeMock = {
+      theme: 'light',
+      toggleTheme: vi.fn(),
+    };
+    vi.mocked(useTheme).mockReturnValue(themeMock);
   });
 
-  it('renders the About component for a dynamic ID route', () => {
-    mockRouter(<About />, 'about');
-    expect(screen.getByTestId('spinner')).toBeInTheDocument();
-    expect(screen.getByTestId('about-loading')).toBeInTheDocument();
-    const links = screen.getAllByRole('link');
-    expect(links.length).toBe(2);
+  it('renders correctly', () => {
+    mockRouter(<Home person={mockPerson} people={mockResults} />);
+    expect(screen.getByTestId('theme')).toBeInTheDocument();
+    expect(screen.getByTestId('theme-btn')).toBeInTheDocument();
+    expect(screen.getByTestId('paginator')).toBeInTheDocument();
+    expect(screen.getByText('Error Button')).toBeInTheDocument();
   });
 
-  it('renders NotFound component for an unknown route', () => {
-    mockRouter(<NotFound />, 'random');
-    expect(
-      screen.getByText('Sorry, the page is Not Found')
-    ).toBeInTheDocument();
+  it('renders About component if query.id exists', () => {
+    routerMock.query.id = '1';
+
+    mockRouter(<Home person={mockPerson} people={mockResults} />);
+    expect(screen.getByTestId('about')).toBeInTheDocument();
   });
 });

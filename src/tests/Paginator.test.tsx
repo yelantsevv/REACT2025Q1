@@ -1,42 +1,30 @@
 import { Paginator } from '../components';
-import { mockRouter } from './mockRouter';
-
-vi.mock(
-  '../store/Redux/api',
-  async (
-    importOriginal: () => Promise<typeof import('../store/Redux/api')>
-  ) => {
-    const actual = await importOriginal();
-    return {
-      ...actual,
-      api: {
-        ...actual.api,
-        useGetPeopleListQuery: vi.fn(() => ({
-          data: { count: 50, results: [] },
-          isLoading: false,
-          isFetching: false,
-          error: null,
-        })),
-      },
-    };
-  }
-);
+import { mockPerson } from './mockData';
+import Link from 'next/link';
 
 vi.mock('../components/CustomLink/CustomLink', () => ({
-  default: vi.fn(({ search }) => <div data-testid="custom-link">{search}</div>),
+  default: vi.fn(() => (
+    <Link href={'custom-link'} data-testid="custom-link"></Link>
+  )),
+}));
+
+vi.mock('next/router', () => ({
+  useRouter: vi.fn(() => ({
+    query: {
+      search: 'testSearch',
+    },
+  })),
 }));
 
 describe('Paginator Component', () => {
-  beforeEach(() => {
-    mockRouter(<Paginator />);
-  });
-
   it('render paginator', () => {
+    render(<Paginator {...mockPerson} />);
     expect(screen.getByTestId('paginator')).toBeInTheDocument();
   });
 
   it('render links', () => {
+    render(<Paginator {...mockPerson} />);
     const links = screen.getAllByTestId('custom-link');
-    expect(links).toHaveLength(7);
+    expect(links).toHaveLength(5);
   });
 });

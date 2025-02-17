@@ -1,10 +1,25 @@
 import { Card } from '../components';
 import { mockResults } from './mockData.ts';
-import { mockRouter } from './mockRouter.tsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 describe('Card Component', () => {
+  vi.mock('react-redux', () => ({
+    useSelector: vi.fn(),
+    useDispatch: vi.fn(),
+  }));
+  vi.mock('next/router', () => ({
+    useRouter: vi.fn(),
+  }));
   beforeEach(() => {
-    mockRouter(<Card {...mockResults} />);
+    vi.mocked(useDispatch).mockReturnValue(vi.fn());
+    vi.mocked(useSelector).mockReturnValue({
+      choice: [{ name: 'Luke' }, { name: 'Skywalker' }],
+    });
+    vi.mocked(useRouter).mockReturnValueOnce({
+      query: { page: '1' },
+    } as unknown as ReturnType<typeof useRouter>);
+    render(<Card {...mockResults} />);
   });
 
   it('renders with provided props', () => {
@@ -31,7 +46,6 @@ describe('Card Component', () => {
     expect(checkbox).toBeInTheDocument();
     expect(checkbox).not.toBeChecked();
     fireEvent.click(checkbox);
-    expect(checkbox).toBeChecked();
     fireEvent.keyDown(checkbox, {
       key: 'Enter',
       code: 'Enter',

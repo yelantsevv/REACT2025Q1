@@ -11,7 +11,7 @@ const expectedComponents: Record<string, unknown> = {
   Paginator: Components.Paginator,
   About: Components.About,
   CustomLink: Components.CustomLink,
-  NotFound: Components.NotFound,
+  NotFoundPage: Components.NotFoundPage,
   Selected: Components.Selected,
 };
 

@@ -1,4 +1,3 @@
-import { Inter } from 'next/font/google';
 import styles from './App.module.css';
 import {
   Search,
@@ -15,28 +14,21 @@ import { getSearch } from '../store/api';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { useEffect, useState } from 'react';
-import { Person, Results } from '../types/types';
+import { HomeProps } from '../types/types';
 import { GetServerSidePropsContext } from 'next';
-
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-});
 
 export async function getServerSideProps({ query }: GetServerSidePropsContext) {
   const person = await getSearch(query);
-  return { props: { person } };
+  return { props: { person, people: person } };
 }
-interface HomeProps {
-  person: Person;
-  people: Results;
-}
+
 export default function Home({ person, people }: HomeProps) {
   const { theme, toggleTheme } = useTheme();
   const router = useRouter();
   const { choice } = useSelector((state: RootState) => state.choice);
 
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const start = () => setLoading(true);
     const end = () => setLoading(false);
@@ -47,13 +39,13 @@ export default function Home({ person, people }: HomeProps) {
 
     return () => {
       router.events.off('routeChangeStart', start);
-      router.events.off('hashChangeComplete', end);
+      router.events.off('routeChangeComplete', end);
       router.events.off('routeChangeError', end);
     };
-  }, [router]);
+  }, [router.events]);
 
   return (
-    <div data-testid="theme" className={styles[theme] + ' ' + inter.variable}>
+    <div data-testid="theme" className={styles[theme]}>
       <button
         data-testid="theme-btn"
         className={styles.themeBtn}
@@ -64,14 +56,14 @@ export default function Home({ person, people }: HomeProps) {
       <div className={styles.app}>
         <div className={styles.header}>
           <Search />
-          <Paginator {...person} />
+          <Paginator key={router.asPath} {...person} />
         </div>
         {loading && (
           <div className={styles.spinner}>
             <Spinner />
           </div>
         )}
-        <CardList people={person} />
+        <CardList key={router.asPath} people={person} />
         <ErrorButton />
         {choice.length > 0 && <Selected />}
       </div>

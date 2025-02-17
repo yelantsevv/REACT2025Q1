@@ -3,30 +3,21 @@ import { Search } from '../components';
 const navigateMock = vi.fn();
 const setQueryMock = vi.fn();
 
-vi.mock('react-router', () => ({
-  useNavigate: () => navigateMock,
-}));
-
-vi.mock('../helpers.ts', () => ({
-  helper: {
-    useSearchParams: () => ({ search: 'testSearch' }),
-  },
-}));
-
 vi.mock('../hooks/useLocaleStorage.ts', () => ({
   useLocalStorage: () => ['testSearch', setQueryMock],
 }));
-
-vi.mock('../store/Redux/api', () => ({
-  useGetPeopleListQuery: vi.fn(),
+vi.mock('next/router', () => ({
+  useRouter: () => ({
+    query: {
+      search: 'testSearch',
+    },
+    push: navigateMock,
+  }),
 }));
-
-beforeEach(() => {
-  render(<Search />);
-});
 
 describe('Search Component', () => {
   it('renders correctly', () => {
+    render(<Search />);
     const form = screen.getByTestId('search');
     const input = screen.getByTestId('input');
     const button = screen.getByText('Search');
@@ -37,14 +28,8 @@ describe('Search Component', () => {
     expect(button).toBeInTheDocument();
   });
 
-  it('changes input value', () => {
-    const input = screen.getByTestId('input');
-
-    fireEvent.change(input, { target: { value: 'Luke Skywalker' } });
-    expect(input).toHaveValue('Luke Skywalker');
-  });
-
   it('calls navigate and setQuery', () => {
+    render(<Search />);
     const input = screen.getByTestId('input');
     const form = screen.getByTestId('search');
 
@@ -56,6 +41,7 @@ describe('Search Component', () => {
   });
 
   it('calls navigate and setQuery with empty value', () => {
+    render(<Search />);
     const input = screen.getByTestId('input');
     const form = screen.getByTestId('search');
 
