@@ -1,9 +1,14 @@
+'use client';
 import { useDispatch, useSelector } from 'react-redux';
-import { CSVLink } from 'react-csv';
 import styles from './Selected.module.css';
 import { RootState } from '../../store/store';
 import { clear, del } from '../../store/features/choiceSlice';
+import dynamic from 'next/dynamic';
+import clsx from 'clsx';
 
+const CSVLink = dynamic(() => import('react-csv').then((m) => m.CSVLink), {
+  ssr: false,
+});
 export default function Selected() {
   const { choice } = useSelector((state: RootState) => state.choice);
   const dispatch = useDispatch();
@@ -19,8 +24,12 @@ export default function Selected() {
     { label: 'Url', key: 'url' },
   ];
 
+  if (choice.length === 0) {
+    return <div className={styles.selected} />;
+  }
+
   return (
-    <div className={styles.selected}>
+    <div className={clsx(styles.selected, styles.active)}>
       <h3>Selected</h3>
       <ul>
         {choice.map((item, index) => (

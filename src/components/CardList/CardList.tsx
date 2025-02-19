@@ -1,7 +1,7 @@
+'use client';
 import styles from './CardList.module.css';
-
-import { Card } from '..';
 import { Person } from '../../types/types';
+import { Card } from '..';
 
 export default function CardList({ people }: { people: Person }) {
   return (

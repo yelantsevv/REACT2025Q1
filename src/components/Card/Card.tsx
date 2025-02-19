@@ -1,20 +1,24 @@
+'use client';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Card.module.css';
 import type { Results } from '../../types/types';
 import type { RootState } from '../../store/store';
 import { add, del } from '../../store/features/choiceSlice';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { URL } from '../../store/api';
+import { URL } from '../../lib/api';
+import { useSearchParams } from 'next/navigation';
+
 export default function Card(props: Results) {
   const { choice } = useSelector((state: RootState) => state.choice);
-  const dispatch = useDispatch();
-  const path = useRouter();
-  const { page, search } = path.query;
 
+  const page = useSearchParams().get('page');
+  const search = useSearchParams().get('search');
+
+  const dispatch = useDispatch();
   const onChanged = (e: boolean) => {
     dispatch(e ? add(props) : del(props.name));
   };
+
   const checked = choice.some((card) => card.name === props.name);
   return (
     <Link

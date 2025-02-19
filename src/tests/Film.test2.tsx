@@ -1,10 +1,11 @@
 import { Film } from '../components';
 import { mockFilms } from './mockData';
 import { mockRouter } from './mockRouter';
-
+import { describe, expect, it } from 'vitest';
+import { screen } from '@testing-library/react';
 describe('Film Component with RTK Query', () => {
   it('renders film data correctly', async () => {
-    mockRouter(<Film film={mockFilms} />);
+    mockRouter(<Film filmLink={'mockFilms'} />);
 
     expect(screen.getByText(mockFilms.title)).toBeInTheDocument();
     expect(screen.getByText(`: ${mockFilms.director}`)).toBeInTheDocument();

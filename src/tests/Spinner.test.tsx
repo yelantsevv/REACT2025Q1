@@ -1,5 +1,7 @@
+import { describe, expect, it } from 'vitest';
 import { Spinner } from '../components';
 import { mockRouter } from './mockRouter';
+import { screen } from '@testing-library/react';
 
 describe('Spinner Component', () => {
   it('renders correctly with the spinner element', () => {

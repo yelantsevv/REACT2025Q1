@@ -1,19 +1,20 @@
 import { Search } from '../components';
-
+import { describe, expect, it, vi } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
 const navigateMock = vi.fn();
 const setQueryMock = vi.fn();
 
 vi.mock('../hooks/useLocaleStorage.ts', () => ({
   useLocalStorage: () => ['testSearch', setQueryMock],
 }));
-vi.mock('next/router', () => ({
-  useRouter: () => ({
-    query: {
-      search: 'testSearch',
-    },
-    push: navigateMock,
-  }),
-}));
+// vi.mock('next/router', () => ({
+//   useRouter: () => ({
+//     query: {
+//       search: 'testSearch',
+//     },
+//     push: navigateMock,
+//   }),
+// }));
 
 describe('Search Component', () => {
   it('renders correctly', () => {

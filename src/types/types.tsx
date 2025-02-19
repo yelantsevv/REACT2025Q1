@@ -9,7 +9,7 @@ export type StateError = {
 };
 
 export type Results = {
-  films: Films[];
+  films: string[];
   gender: string;
   height: string;
   mass: string;

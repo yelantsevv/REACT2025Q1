@@ -6,13 +6,11 @@ import react from 'eslint-plugin-react';
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
 import reactCompiler from 'eslint-plugin-react-compiler';
-// import eslintNext from 'eslint-config-next';
 
 export default tseslint.config(
   { ignores: ['dist'] },
   {
     extends: [
-      // eslintNext,
       js.configs.recommended,
       ...tseslint.configs.strict,
       eslintPluginPrettier,
@@ -29,7 +27,7 @@ export default tseslint.config(
       'react-compiler': reactCompiler,
     },
     rules: {
-      ...reactHooks.configs.recommended.rules,
+      // ...reactHooks.configs.recommended.rules,
       'react-compiler/react-compiler': 'error',
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,

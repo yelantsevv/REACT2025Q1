@@ -1,25 +1,16 @@
+'use server';
 import styles from './About.module.css';
-import { Film } from '..';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { Results } from '../../types/types';
-export default function About({ people }: { people: Results }) {
-  const { search, page } = useRouter().query;
+import { Suspense } from 'react';
+import Back from './Back';
+import Film from '../Film/Film';
 
+export default async function About({ people }: { people: Results }) {
   return (
     <div data-testid="about" className={styles.container}>
-      <Link
-        href={{ pathname: '/', query: { search, page } }}
-        className={styles.fon}
-      />
+      <Back className={styles.fon} />
       <div className={styles.about}>
-        <Link
-          href={{ pathname: '/', query: { search, page } }}
-          className={styles.back}
-        >
-          Back
-        </Link>
-
+        <Back className={styles.back} nameBtn="Back" />
         <div className={styles.info}>
           <p>
             <b>Actor</b>: {people?.name}
@@ -43,7 +34,12 @@ export default function About({ people }: { people: Results }) {
         <h2>Films</h2>
         <div className={styles.films}>
           {people?.films?.map((film, index) => (
-            <Film key={index} film={film} />
+            <Suspense
+              key={index}
+              fallback={<div className={styles.loading + ' ' + styles.title} />}
+            >
+              <Film filmLink={film} />
+            </Suspense>
           ))}
         </div>
       </div>

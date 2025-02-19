@@ -1,8 +1,9 @@
 import { About } from '../components';
 import { mockResults } from './mockData';
 import { mockRouter } from './mockRouter';
-import { useRouter } from 'next/router';
-
+import { describe, expect, it, vi } from 'vitest';
+import { screen } from '@testing-library/react';
+import { useRouter } from 'next/navigation';
 vi.mock('../components/Film/Film', () => ({
   default: vi.fn(() => <div data-testid="film-component" />),
 }));

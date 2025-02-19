@@ -1,6 +1,21 @@
 .card {
   position: relative;
-  composes: btn from '../../pages/App.module.css';
+  cursor: pointer;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: var(--color-Btn);
+  color: var(--color-Text);
+  transition: all 0.3s ease-out;
+  text-align: center;
+  border: dashed 1px var(--color-Text);
+  margin: 0.5rem;
+
+  &:hover {
+    background-color: var(--color-Btn-Hover);
+    color: var(--color-Text);
+  }
+
   width: 13rem;
   cursor: auto;
   text-align: left;

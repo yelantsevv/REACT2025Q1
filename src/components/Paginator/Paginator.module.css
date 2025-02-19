@@ -1,7 +1,6 @@
 .pagination {
   display: flex;
   justify-content: center;
-  composes: btn from '../../pages/App.module.css';
+  composes: btn from '../../app/App.module.css';
   cursor: auto;
-  padding: 0;
 }

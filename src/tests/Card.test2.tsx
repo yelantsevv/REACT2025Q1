@@ -2,7 +2,8 @@ import { Card } from '../components';
 import { mockResults } from './mockData.ts';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
 describe('Card Component', () => {
   vi.mock('react-redux', () => ({
     useSelector: vi.fn(),

@@ -1,3 +1,4 @@
+'use client';
 import { Component } from 'react';
 import type { Props, StateError } from '../../types/types';
 import { ErrorPage } from '..';

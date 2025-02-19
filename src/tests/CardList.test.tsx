@@ -1,6 +1,8 @@
 import { CardList } from '../components';
 import { mockRouter } from './mockRouter.tsx';
 import { mockPerson } from './mockData.ts';
+import { describe, expect, it, vi } from 'vitest';
+import { screen } from '@testing-library/react';
 
 vi.mock('../components/Card/Card.tsx', () => ({
   default: vi.fn(() => <div data-testid="card" />),

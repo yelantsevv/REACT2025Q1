@@ -1,8 +1,10 @@
-import { act } from '@testing-library/react';
-import { ThemeProvider } from '../store/Theme/ThemeProvider';
-import { ThemeContext } from '../store/Theme/ThemeContext';
+import { act, render, screen } from '@testing-library/react';
+import { ThemeProvider } from '../Theme/ThemeProvider';
+import { ThemeContext } from '../Theme/ThemeContext';
 import { useLocalStorage } from '../hooks';
 import { mockRouter } from './mockRouter';
+import { expect, it, vi } from 'vitest';
+import { describe } from 'node:test';
 
 vi.mock('../hooks', () => ({
   useLocalStorage: vi.fn(),

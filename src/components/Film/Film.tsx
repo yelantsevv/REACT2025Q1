@@ -1,7 +1,11 @@
+'use server';
+import { getFilm } from '../../lib/api';
 import { Films } from '../../types/types';
 import styles from './Film.module.css';
 
-export default function Film({ film }: { film: Films }) {
+export default async function Film({ filmLink }: { filmLink: string }) {
+  const film: Films = await getFilm(filmLink);
+
   return (
     <div className={styles.title}>
       <h2>{film?.title}</h2>

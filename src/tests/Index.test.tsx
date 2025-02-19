@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import * as Components from '../components';
 
 const expectedComponents: Record<string, unknown> = {

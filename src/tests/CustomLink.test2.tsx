@@ -1,8 +1,8 @@
 import { CustomLink } from '../components';
 import { mockRouter } from './mockRouter';
-import { it } from 'vitest';
 import { useRouter } from 'next/router';
-
+import { describe, expect, it, vi } from 'vitest';
+import { fireEvent, screen } from '@testing-library/react';
 const setQueryMock = vi.fn();
 
 vi.mock('../hooks/useLocaleStorage.ts', () => ({

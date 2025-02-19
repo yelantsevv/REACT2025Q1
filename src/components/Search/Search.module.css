@@ -1,12 +1,12 @@
 .search {
-  composes: btn from '../../pages/App.module.css';
+  composes: btn from '../../app/App.module.css';
   padding: 0;
   margin: 0;
   cursor: auto;
 }
 
 .button {
-  composes: btn from '../../pages/App.module.css';
+  composes: btn from '../../app/App.module.css';
 
   &:hover {
     background-color: var(--color-Bg);
@@ -14,7 +14,7 @@
 }
 
 .input {
-  composes: btn from '../../pages/App.module.css';
+  composes: btn from '../../app/App.module.css';
   max-width: 500px;
   width: 50vw;
 

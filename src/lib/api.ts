@@ -3,19 +3,16 @@ export const URL = 'https://swapi.dev/api/people/';
 export async function getPeople({ id = '' }) {
   const res = await fetch(URL + id);
   const person = await res.json();
-
-  if (person.films) {
-    person.films = await Promise.all(person.films.map(getFilm));
-  }
   return person;
 }
 
-async function getFilm(filmUrl: string) {
+export async function getFilm(filmUrl: string) {
   const res = await fetch(filmUrl);
-  return await res.json();
+  const film = await res.json();
+  return film;
 }
 
-export async function getSearch({ search = '', page = 1 }) {
+export async function getSearch({ search = '', page = '1' }) {
   const res = await fetch(`${URL}?search=${search}&page=${page}`);
   const pages = await res.json();
   return pages;

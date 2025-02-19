@@ -45,7 +45,7 @@ export const mockFilms: Films = {
 
 export const mockResults: Results = {
   error: '',
-  films: [mockFilms, mockFilms, mockFilms],
+  films: [],
   name: 'Luke Skywalker',
   url: 'https://swapi.dev/api/people/1/',
   gender: 'male',

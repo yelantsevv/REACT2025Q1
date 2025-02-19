@@ -1,5 +1,7 @@
+import { describe, expect, it, vi } from 'vitest';
 import { ErrorButton } from '../components';
 import { mockRouter } from './mockRouter';
+import { fireEvent, screen } from '@testing-library/react';
 
 describe('ErrorButton Component', () => {
   it('renders correctly', () => {

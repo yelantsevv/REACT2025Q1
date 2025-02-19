@@ -1,6 +1,8 @@
+import { describe, expect, it, vi } from 'vitest';
 import { Paginator } from '../components';
 import { mockPerson } from './mockData';
 import Link from 'next/link';
+import { render, screen } from '@testing-library/react';
 
 vi.mock('../components/CustomLink/CustomLink', () => ({
   default: vi.fn(() => (

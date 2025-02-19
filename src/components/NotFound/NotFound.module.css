@@ -1,6 +1,4 @@
 .wrapper {
-  height: 100vh;
-  width: 100vw;
   text-align: center;
   align-content: center;
 
@@ -11,5 +9,5 @@
 }
 
 .button {
-  composes: btn from '../../pages/App.module.css';
+  composes: btn from '../../app/App.module.css';
 }

@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import styles from './ErrorButton.module.css';
 import { StateError } from '../../types/types';

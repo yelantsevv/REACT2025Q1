@@ -29,7 +29,7 @@
 }
 
 .back {
-  composes: btn from '../../pages/App.module.css';
+  composes: btn from '../../app/App.module.css';
   position: fixed;
   top: 5%;
   right: 5%;
@@ -62,4 +62,38 @@
 .redirect {
   text-align: center;
   margin-top: 10rem;
+}
+
+.title {
+  padding: 0.5rem;
+  border: dashed 1px var(--color-Text);
+  border-radius: 0.5rem;
+  height: 350px;
+  width: 90%;
+
+  & > .ups {
+    color: var(--color-Error);
+    text-align: center;
+  }
+}
+
+.loading {
+  background: linear-gradient(
+    90deg,
+    #f1f1f1ec 0%,
+    #c7c7c78f 50%,
+    #f1f1f1ec 100%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite ease-in-out;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 100%;
+  }
+
+  100% {
+    background-position: -100%;
+  }
 }
