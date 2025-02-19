@@ -3,6 +3,7 @@ import { CSVLink } from 'react-csv';
 import styles from './Selected.module.css';
 import { RootState } from '../../store/store';
 import { clear, del } from '../../store/Redux/features/choiceSlice';
+import clsx from 'clsx';
 
 export default function Selected() {
   const { choice } = useSelector((state: RootState) => state.choice);
@@ -19,8 +20,12 @@ export default function Selected() {
     { label: 'Url', key: 'url' },
   ];
 
+  if (choice.length === 0) {
+    return <div className={styles.selected} />;
+  }
+
   return (
-    <div className={styles.selected}>
+    <div className={clsx(styles.selected, styles.active)}>
       <h3>Selected</h3>
       <ul>
         {choice.map((item, index) => (

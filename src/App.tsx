@@ -1,7 +1,13 @@
 import { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router';
 import styles from './App.module.css';
-import { CardList, ErrorButton, Paginator, Search } from './components';
+import {
+  CardList,
+  ErrorButton,
+  Paginator,
+  Search,
+  Selected,
+} from './components';
 import { useLocalStorage, useTheme } from './hooks';
 
 export default function App() {
@@ -31,6 +37,7 @@ export default function App() {
         </div>
         <CardList />
         <ErrorButton />
+        <Selected />
       </div>
       <Outlet />
     </div>
