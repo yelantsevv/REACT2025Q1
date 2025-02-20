@@ -17,10 +17,3 @@
   --color-Btn-Hover: #7a7a7a;
   --color-Error: #ff0000;
 }
-
-.themeBtn {
-  composes: btn from '../app/App.module.css';
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-}

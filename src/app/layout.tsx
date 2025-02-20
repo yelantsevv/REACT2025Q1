@@ -2,7 +2,7 @@ import './globals.css';
 import { Providers } from './providers';
 import { Inter } from 'next/font/google';
 import styles from './App.module.css';
-import Theme from '../Theme/Theme';
+import ThemeBtn from '../Theme/ThemeBtn';
 import { ErrorBoundary, ErrorButton, Search, Selected } from '../components';
 import { Suspense } from 'react';
 
@@ -22,21 +22,20 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <Providers>
-          <Theme>
-            <div className={styles.app}>
-              <div className={styles.header}>
-                <Suspense>
-                  <Search />
-                </Suspense>
-              </div>
-              <ErrorBoundary>
-                {children}
-                <Selected />
-                <ErrorButton />
-              </ErrorBoundary>
+          <div className={styles.app}>
+            <ThemeBtn className={styles.themeBtn} />
+            <div className={styles.header}>
+              <Suspense>
+                <Search />
+              </Suspense>
             </div>
-            {about}
-          </Theme>
+            <ErrorBoundary>
+              {children}
+              <Selected />
+              <ErrorButton />
+            </ErrorBoundary>
+          </div>
+          {about}
         </Providers>
       </body>
     </html>

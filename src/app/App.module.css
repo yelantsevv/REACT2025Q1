@@ -15,6 +15,7 @@
   border-bottom: 1px dashed var(--color-Text);
 }
 
+.themeBtn,
 .btn {
   cursor: pointer;
   border-radius: 0.5rem;
@@ -31,6 +32,12 @@
     background-color: var(--color-Btn-Hover);
     color: var(--color-Text);
   }
+}
+
+.themeBtn {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
 }
 
 .spinner {
