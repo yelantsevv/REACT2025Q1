@@ -1,0 +1,67 @@
+@import '../../App.module.css';
+
+.container {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: right;
+}
+
+.fon {
+  height: 100vh;
+  width: 100vw;
+  background: #a9a8a871;
+}
+
+.about {
+  height: 100vh;
+  min-width: 550px;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--color-Text);
+  background: var(--color-Bg);
+  overflow: auto;
+  direction: rtl;
+  color: var(--color-Text);
+}
+
+.back {
+  composes: btn;
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  color: var(--color-Error);
+}
+
+.films {
+  direction: ltr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 15px;
+  margin-top: 0.5rem;
+  padding: 1rem 0;
+  border: dashed 1px var(--color-Text);
+  border-radius: 0.5rem;
+  width: 80%;
+}
+
+.info {
+  direction: ltr;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border: dashed 1px var(--color-Text);
+  border-radius: 0.5rem;
+  width: 80%;
+}
+
+.redirect {
+  text-align: center;
+  margin-top: 10rem;
+}
