@@ -1,6 +1,6 @@
 import { CardList } from '../components';
 import { mockRouter } from './mockRouter.tsx';
-import { api } from '../store/Redux/api';
+import { useGetPeopleListQuery } from '../store/Redux/api';
 
 vi.mock(
   '../store/Redux/api',
@@ -10,10 +10,7 @@ vi.mock(
     const actual = await importOriginal();
     return {
       ...actual,
-      api: {
-        ...actual.api,
-        useGetPeopleListQuery: vi.fn(),
-      },
+      useGetPeopleListQuery: vi.fn(),
     };
   }
 );
@@ -24,9 +21,9 @@ vi.mock('../components/Card/Card.tsx', () => ({
 
 describe('CardList Component', () => {
   it('renders a list of cards when No results', async () => {
-    vi.mocked(api.useGetPeopleListQuery).mockReturnValueOnce({
+    vi.mocked(useGetPeopleListQuery).mockReturnValueOnce({
       data: { results: [] },
-    } as unknown as ReturnType<typeof api.useGetPeopleListQuery>);
+    } as unknown as ReturnType<typeof useGetPeopleListQuery>);
 
     mockRouter(<CardList />);
 
@@ -34,17 +31,17 @@ describe('CardList Component', () => {
   });
 
   it('renders a spinner when loading', () => {
-    vi.mocked(api.useGetPeopleListQuery).mockReturnValueOnce({
+    vi.mocked(useGetPeopleListQuery).mockReturnValueOnce({
       isFetching: true,
-    } as unknown as ReturnType<typeof api.useGetPeopleListQuery>);
+    } as unknown as ReturnType<typeof useGetPeopleListQuery>);
     mockRouter(<CardList />);
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
 
   it('renders no results error: true', async () => {
-    vi.mocked(api.useGetPeopleListQuery).mockReturnValueOnce({
+    vi.mocked(useGetPeopleListQuery).mockReturnValueOnce({
       error: { status: 404 },
-    } as unknown as ReturnType<typeof api.useGetPeopleListQuery>);
+    } as unknown as ReturnType<typeof useGetPeopleListQuery>);
     mockRouter(<CardList />);
 
     expect(screen.getByTestId('error')).toBeInTheDocument();

@@ -9,15 +9,12 @@ vi.mock(
     const actual = await importOriginal();
     return {
       ...actual,
-      api: {
-        ...actual.api,
-        useGetPeopleListQuery: vi.fn(() => ({
-          data: { count: 50, results: [] },
-          isLoading: false,
-          isFetching: false,
-          error: null,
-        })),
-      },
+      useGetPeopleListQuery: vi.fn(() => ({
+        data: { count: 50, results: [] },
+        isLoading: false,
+        isFetching: false,
+        error: null,
+      })),
     };
   }
 );

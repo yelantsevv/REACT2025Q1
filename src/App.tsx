@@ -9,12 +9,14 @@ import {
   Selected,
 } from './components';
 import { useLocalStorage, useTheme } from './hooks';
+import { helper } from './helpers';
 
 export default function App() {
   const navigate = useNavigate();
   const [query] = useLocalStorage('query');
-
+  const { search, page } = helper.useSearchParams();
   useEffect(() => {
+    if (search || page !== '1') return;
     navigate(query);
     // eslint-disable-next-line
   }, []);

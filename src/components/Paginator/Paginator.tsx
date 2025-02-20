@@ -1,10 +1,10 @@
 import styles from './Paginator.module.css';
 import { helper } from '../../helpers';
 import { CustomLink } from '..';
-import { api, URL } from '../../store/Redux/api';
+import { useGetPeopleListQuery, URL } from '../../store/Redux/api';
 
 export default function Paginator() {
-  const { data } = api.useGetPeopleListQuery(helper.query());
+  const { data } = useGetPeopleListQuery(helper.query());
 
   const number = Math.ceil((data?.count || 0) / 10);
   const arrList = new Array(number).fill(0).map((_, i) => i + 1);

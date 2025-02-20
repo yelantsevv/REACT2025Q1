@@ -2,12 +2,10 @@ import { FormEvent, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import styles from './Search.module.css';
 import { helper } from '../../helpers';
-import { useGetPeopleListQuery } from '../../store/Redux/api';
 import { useLocalStorage } from '../../hooks';
 
 export default function Search() {
-  const [query, setQuery] = useLocalStorage('query');
-  useGetPeopleListQuery(query);
+  const [, setQuery] = useLocalStorage('query');
 
   const { search } = helper.useSearchParams();
   const navigate = useNavigate();
