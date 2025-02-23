@@ -20,12 +20,12 @@ vi.mock('next/router', () => ({
 
 describe('Paginator Component', () => {
   it('render paginator', () => {
-    render(<Paginator {...mockPerson} />);
+    render(<Paginator {...mockPerson} search="testSearch" />);
     expect(screen.getByTestId('paginator')).toBeInTheDocument();
   });
 
   it('render links', () => {
-    render(<Paginator {...mockPerson} />);
+    render(<Paginator {...mockPerson} search="testSearch" />);
     const links = screen.getAllByTestId('custom-link');
     expect(links).toHaveLength(5);
   });
