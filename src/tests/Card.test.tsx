@@ -1,7 +1,6 @@
 import { Card } from '../components';
 import { mockResults } from './mockData.ts';
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 describe('Card Component', () => {
@@ -9,17 +8,16 @@ describe('Card Component', () => {
     useSelector: vi.fn(),
     useDispatch: vi.fn(),
   }));
-  vi.mock('next/router', () => ({
-    useRouter: vi.fn(),
+
+  vi.mock('next/navigation', () => ({
+    useSearchParams: vi.fn(() => new URLSearchParams({ page: '1' })),
   }));
+
   beforeEach(() => {
     vi.mocked(useDispatch).mockReturnValue(vi.fn());
     vi.mocked(useSelector).mockReturnValue({
       choice: [{ name: 'Luke' }, { name: 'Skywalker' }],
     });
-    vi.mocked(useRouter).mockReturnValueOnce({
-      query: { page: '1' },
-    } as unknown as ReturnType<typeof useRouter>);
     render(<Card {...mockResults} />);
   });
 

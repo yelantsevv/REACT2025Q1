@@ -7,14 +7,11 @@ const setQueryMock = vi.fn();
 vi.mock('../hooks/useLocaleStorage.ts', () => ({
   useLocalStorage: () => ['testSearch', setQueryMock],
 }));
-// vi.mock('next/router', () => ({
-//   useRouter: () => ({
-//     query: {
-//       search: 'testSearch',
-//     },
-//     push: navigateMock,
-//   }),
-// }));
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: navigateMock }),
+  useSearchParams: () =>
+    new URLSearchParams({ search: 'testSearch', page: '1' }),
+}));
 
 describe('Search Component', () => {
   it('renders correctly', () => {
