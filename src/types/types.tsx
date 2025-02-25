@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export type Props = {
   children: ReactNode;
@@ -48,6 +48,7 @@ export type Films = {
 export type CustomLinkProps = {
   search?: string;
   item: string | number;
+  page?: string | number;
 };
 
 export type ErrorPageType = {

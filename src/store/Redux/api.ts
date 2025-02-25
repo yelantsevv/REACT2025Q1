@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Films, Results, Person } from '../../types/types';
+import type { Films, Person, Results } from 'src/types/types';
 
 export const URL = 'https://swapi.dev/api/people/';
 

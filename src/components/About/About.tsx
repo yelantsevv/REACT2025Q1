@@ -1,46 +1,49 @@
-import { NavLink, useNavigate } from 'react-router';
-import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+// import { NavLink, useNavigate } from 'react-router';
+import { NavLink } from 'react-router';
+// import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import styles from './About.module.css';
-import { Film, Spinner } from '..';
+// import { Film, Spinner } from '..';
 import { helper } from '../../helpers';
-import { useGetPeopleQuery } from '../../store/Redux/api';
+import Film from '../Film/Film';
+import type { Results } from 'src/types/types';
+// import { useGetPeopleQuery } from '../../store/Redux/api';
 
-export default function About() {
-  const navigate = useNavigate();
-  const id = helper.useParams() || '';
+export default function AboutPage({ data }: { data: Results }) {
+  // const navigate = useNavigate();
+  // const id = helper.useParams() || '';
   const query = helper.query();
-  const { data, isLoading, error } = useGetPeopleQuery(id);
+  // const { data, isLoading, error } = useGetPeopleQuery(id);
 
-  if (isLoading) {
-    return (
-      <div data-testid="about-loading" className={styles.container}>
-        <NavLink to={query} className={styles.fon} />
-        <div className={styles.about}>
-          <Spinner />
-          <NavLink to={query} className={styles.back}>
-            Back
-          </NavLink>
-        </div>
-      </div>
-    );
-  }
-  if (error) {
-    setTimeout(() => navigate(query), 2000);
-    return (
-      <div data-testid="about-error" className={styles.container}>
-        <NavLink to={query} className={styles.fon} />
-        <div className={styles.about}>
-          <div className={styles.redirect}>
-            <h1>{(error as FetchBaseQueryError).status}</h1>
-            <h3>REDIRECT</h3>
-          </div>
-          <NavLink to={query} className={styles.back}>
-            Back
-          </NavLink>
-        </div>
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div data-testid="about-loading" className={styles.container}>
+  //       <NavLink to={query} className={styles.fon} />
+  //       <div className={styles.about}>
+  //         <Spinner />
+  //         <NavLink to={query} className={styles.back}>
+  //           Back
+  //         </NavLink>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+  // if (error) {
+  //   setTimeout(() => navigate(query), 2000);
+  //   return (
+  //     <div data-testid="about-error" className={styles.container}>
+  //       <NavLink to={query} className={styles.fon} />
+  //       <div className={styles.about}>
+  //         <div className={styles.redirect}>
+  //           <h1>{(error as FetchBaseQueryError).status}</h1>
+  //           <h3>REDIRECT</h3>
+  //         </div>
+  //         <NavLink to={query} className={styles.back}>
+  //           Back
+  //         </NavLink>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div data-testid="about" className={styles.container}>

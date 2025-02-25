@@ -7,3 +7,8 @@
   cursor: auto;
   padding: 0;
 }
+/* .pagination {
+  composes: btn;
+  cursor: auto;
+  padding: 0;
+} */

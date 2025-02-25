@@ -30,6 +30,13 @@
   --color-Btn-Hover: #525252;
 }
 
+.cardList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
 :global(.active) {
   background: var(--color-Active);
 }

@@ -1,4 +1,4 @@
-import { About } from '../components';
+import About from '../components/About/About';
 import { mockResults } from './mockData';
 import { mockRouter } from './mockRouter';
 import { useGetPeopleQuery } from '../store/Redux/api';

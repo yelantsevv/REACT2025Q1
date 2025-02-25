@@ -1,12 +1,8 @@
 import { Link } from 'react-router';
 import styles from './CustomLink.module.css';
 import clsx from 'clsx';
-import { helper } from '../../helpers';
-import type { CustomLinkProps } from '../../types/types';
-import { useLocalStorage } from '../../hooks';
-export default function CustomLink({ search, item }: CustomLinkProps) {
-  const [, setValue] = useLocalStorage('query');
-  const { page } = helper.useSearchParams();
+import type { CustomLinkProps } from 'src/types/types';
+export default function CustomLink({ search, item, page }: CustomLinkProps) {
   return (
     <Link
       data-testid="link"
@@ -18,7 +14,6 @@ export default function CustomLink({ search, item }: CustomLinkProps) {
       )}
       onClick={(e) => {
         if (!search) return e.preventDefault();
-        setValue('/' + search);
       }}
     >
       {item}
