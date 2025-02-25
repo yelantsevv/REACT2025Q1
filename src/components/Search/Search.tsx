@@ -1,22 +1,16 @@
 import { useRef, type FormEvent } from 'react';
-// import type { FormEvent } from 'react';
-// import { useRef } from 'react';
 import { useNavigate } from 'react-router';
 import styles from './Search.module.css';
-// import { helper } from '../../helpers';
-// import { useLocalStorage } from '../../hooks';
+import { helper } from '../../helpers';
 
 export default function Search() {
-  // const [, setQuery] = useLocalStorage('query');
-
-  // const { search } = helper.useSearchParams();
+  const { search } = helper.useSearchParams();
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const inputValue = inputRef.current?.value || '';
-    // setQuery(`?search=${inputValue}`);
     navigate(`?search=${inputValue}`);
   };
 
@@ -31,7 +25,7 @@ export default function Search() {
         type="text"
         ref={inputRef}
         placeholder="Search..."
-        // defaultValue={search}
+        defaultValue={search}
         data-testid="input"
       />
       <button className={styles.button} type="submit">

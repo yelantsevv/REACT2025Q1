@@ -30,6 +30,12 @@
     "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
+    "moduleDetection": "force",
+    /* Linting */
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
   }
 }

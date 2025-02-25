@@ -1,4 +1,4 @@
-import { ErrorPageType } from '../../types/types';
+import type { ErrorPageType } from 'src/types/types';
 import styles from './ErrorPage.module.css';
 
 export default function ErrorPage({ error, reset }: ErrorPageType) {

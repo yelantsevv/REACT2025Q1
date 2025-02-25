@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { CSVLink } from 'react-csv';
 import styles from './Selected.module.css';
-import { clear, del } from '../../store/Redux/features/choiceSlice';
+import { clear, del } from '../../store/features/choiceSlice';
 import clsx from 'clsx';
 import type { RootState } from 'src/store/store';
 

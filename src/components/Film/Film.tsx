@@ -1,29 +1,7 @@
 import styles from './Film.module.css';
-import clsx from 'clsx';
-import { useGetFilmQuery } from '../../store/Redux/api';
-import type { FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import type { Films } from 'src/types/types';
 
-export default function Film({ film }: { film: string }) {
-  const { data, isLoading, error } = useGetFilmQuery(film);
-
-  if (isLoading) {
-    return (
-      <div
-        data-testid="loading-film"
-        className={clsx(styles.title, styles.loading)}
-      ></div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div data-testid="loading-film" className={styles.title}>
-        <p className={styles.ups}>{(error as FetchBaseQueryError).status}</p>
-        <p className={styles.ups}>Ops something went wrong</p>
-      </div>
-    );
-  }
-
+export default function Film({ data }: { data: Films }) {
   return (
     <div className={styles.title}>
       <h2>{data?.title}</h2>

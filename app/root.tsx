@@ -2,29 +2,25 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  isRouteErrorResponse,
+  useNavigation,
 } from 'react-router';
-import type { Route } from './+types/root';
 
 import { Provider } from 'react-redux';
 import { store } from '../src/store/store';
 import { ThemeProvider } from '../src/store/Theme/ThemeProvider';
-import { useTheme } from '../src/hooks';
+import { useTheme } from '../src/store/Theme/useTheme';
 import Search from '../src/components/Search/Search';
 import styles from '../src/App.module.css';
 import Selected from '../src/components/Selected/Selected';
-
-export function HydrateFallback() {
-  console.log('object');
-  return (
-    <div>
-      <p>Loading, please wait...sdsd</p>
-    </div>
-  );
-}
+import Spinner from '../src/components/Spinner/Spinner';
+import ErrorBoundary from '../src/components/ErrorBoundary/ErrorBoundary';
+import ErrorButton from '../src/components/ErrorButton/ErrorButton';
 
 export default function App() {
   const { theme, toggleTheme } = useTheme();
+  const navigation = useNavigation();
+  const isNavigating = Boolean(navigation.location);
+
   return (
     <div data-testid="theme" className={styles[theme]}>
       <button
@@ -38,7 +34,9 @@ export default function App() {
         <div className={styles.header}>
           <Search />
         </div>
+        {isNavigating && <Spinner />}
         <Outlet />
+        <ErrorButton />
       </div>
       <Selected />
     </div>
@@ -54,40 +52,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <Provider store={store}>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <ErrorBoundary>{children}</ErrorBoundary>
+          </ThemeProvider>
         </Provider>
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
-  );
-}
-
-export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = 'Oops!';
-  let details = 'An unexpected error occurred.';
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? '404' : 'Error';
-    details =
-      error.status === 404
-        ? 'The requested page could not be found.'
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
-
-  return (
-    <main id="error-page">
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre>
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
   );
 }

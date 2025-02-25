@@ -4,8 +4,8 @@ import styles from './Card.module.css';
 import type { Results } from '../../types/types';
 import type { RootState } from '../../store/store';
 import { helper } from '../../helpers';
-import { add, del } from '../../store/Redux/features/choiceSlice';
-import { URL } from '../../store/Redux/api';
+import { add, del } from '../../store/features/choiceSlice';
+import { URL } from '../../../app/api';
 
 export default function Card(props: Results) {
   const { choice } = useSelector((state: RootState) => state.choice);

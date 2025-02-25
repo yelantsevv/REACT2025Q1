@@ -1,17 +1,16 @@
 import AboutPage from '../../src/components/About/About';
-import type { Route } from '../+types/root';
 import type { Results } from 'src/types/types';
+import { getPeople } from '../api';
+import type { Route } from './+types/about';
 
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
-  const id = url.pathname.split('/').pop();
-  const data = await fetch(`https://swapi.dev/api/people/${id}`).then((res) =>
-    res.json()
-  );
+  const id = url.pathname;
+  const data: Results = await getPeople({ id });
   return { data };
 }
 
 export default function About({ loaderData }: Route.ComponentProps) {
-  const { data } = loaderData as unknown as { data: Results };
+  const { data } = loaderData;
   return <AboutPage data={data} />;
 }

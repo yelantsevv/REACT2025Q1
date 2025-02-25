@@ -1,7 +1,7 @@
 import styles from './Paginator.module.css';
 import { helper } from '../../helpers';
 import CustomLink from '../CustomLink/CustomLink';
-import { URL } from '../../store/Redux/api';
+import { URL } from '../../../app/api';
 import type { Person } from 'src/types/types';
 
 export default function Paginator({

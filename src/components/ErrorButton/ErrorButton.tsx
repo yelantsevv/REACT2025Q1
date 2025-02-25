@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from './ErrorButton.module.css';
-import { StateError } from '../../types/types';
+import type { StateError } from 'src/types/types';
 
 export default function ErrorButton() {
   const [state, setState] = useState<StateError>({ error: null });

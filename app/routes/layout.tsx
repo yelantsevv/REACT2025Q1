@@ -1,26 +1,22 @@
-import { Outlet } from 'react-router';
+import { Outlet, useLoaderData } from 'react-router';
 
 import Paginator from '../../src/components/Paginator/Paginator';
-import type { Route } from '../+types/root';
 import Card from '../../src/components/Card/Card';
 import styles from '../../src/App.module.css';
 import type { Person } from 'src/types/types';
+import { getPeople } from '../api';
+import type { Route } from './+types/layout';
 
 export async function loader({ request }: Route.LoaderArgs) {
   const url = new URL(request.url);
   const search = url.search || '';
   const page = url.searchParams.get('page') || '1';
-  const data = await fetch(`https://swapi.dev/api/people/${search}`).then(
-    (res) => res.json()
-  );
+  const data: Person = await getPeople({ id: search });
   return { data, page };
 }
 
-export default function SidebarLayout({ loaderData }: Route.ComponentProps) {
-  const { data, page } = loaderData as unknown as {
-    data: Person;
-    page: string;
-  };
+export default function SidebarLayout() {
+  const { data, page } = useLoaderData<{ data: Person; page: string }>();
 
   return (
     <>
