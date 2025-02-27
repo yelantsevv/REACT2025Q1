@@ -1,6 +1,7 @@
-import { Selected } from '../components';
+import Selected from '../components/Selected/Selected';
 import { useSelector, useDispatch } from 'react-redux';
-import { del, clear } from '../store/Redux/features/choiceSlice';
+import { del, clear } from '../store/features/choiceSlice';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 vi.mock('react-redux', () => ({
   useSelector: vi.fn(),

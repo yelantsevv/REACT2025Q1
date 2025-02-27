@@ -1,6 +1,7 @@
-import { Card } from '../components';
-import { mockResults } from './mockData.ts';
-import { mockRouter } from './mockRouter.tsx';
+import { fireEvent, screen } from '@testing-library/react';
+import Card from '../components/Card/Card';
+import { mockResults } from './mockData';
+import { mockRouter } from './mockRouter';
 
 describe('Card Component', () => {
   beforeEach(() => {

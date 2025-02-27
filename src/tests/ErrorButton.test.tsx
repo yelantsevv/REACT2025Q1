@@ -1,4 +1,5 @@
-import { ErrorButton } from '../components';
+import { fireEvent, screen } from '@testing-library/react';
+import ErrorButton from '../components/ErrorButton/ErrorButton';
 import { mockRouter } from './mockRouter';
 
 describe('ErrorButton Component', () => {
