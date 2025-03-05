@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import count from './features/countSlice';
+import country from './features/countrySlice';
+import dataForm from './features/dataFormSlice';
 
 export const store = configureStore({
   reducer: {
+    country,
     count,
+    dataForm,
   },
 });
 
