@@ -1,0 +1,19 @@
+{
+  "un-control": "Uncontrolled form",
+  "react-form": "React Hook Form",
+  "name": "Name",
+  "age": "Age",
+  "email": "Email",
+  "password": "Password",
+  "confirm-password": "Confirm Password",
+  "gender": "Gender",
+  "male": " Male",
+  "female": " Female",
+  "country": "Country",
+  "tc": " Agree with T&C",
+  "submit": "Submit",
+  "Add-Image": "Add Image",
+  "No-data": "No data. Please fill out the form.",
+  "delete": "Delete",
+  "form": "Form"
+}

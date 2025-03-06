@@ -7,7 +7,7 @@ import { RootState } from '../../store/store';
 import { addForm } from '../../store/features/dataFormSlice';
 import { useNavigate } from 'react-router';
 import useImage from '../useImage';
-
+import t from '../../Context/locales';
 export default function ReactForm() {
   const {
     watch,
@@ -22,33 +22,34 @@ export default function ReactForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [fileImage, setImage] = useImage();
-  const agree = watch('agree') || false;
   const file = watch('file');
   const onSubmit = (data: FormData) => {
-    const country = countryList.find((item) => item.country === data.country);
+    const country = countryList.find(
+      (item) =>
+        item.country === data.country || item.countryRus === data.country
+    );
     dispatch(addForm({ ...data, file: fileImage, ...country }));
     navigate('/');
   };
-
   return (
     <div className={style.form}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="name">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">{t('name')}</label>
           <input
             id="name"
             type="text"
-            placeholder="Enter name"
+            placeholder={t('name')}
             {...register('name')}
           />
           <p>{errors.name?.message}</p>
         </div>
 
         <div className="age">
-          <label htmlFor="age">Age: </label>
+          <label htmlFor="age">{t('age')}: </label>
           <input
             id="age"
-            placeholder="Enter age"
+            placeholder={t('age')}
             type="number"
             {...register('age')}
           />
@@ -59,7 +60,7 @@ export default function ReactForm() {
           <label htmlFor="email">Email: </label>
           <input
             id="email"
-            placeholder="Enter email"
+            placeholder="Email"
             type="email"
             {...register('email')}
           />
@@ -67,61 +68,63 @@ export default function ReactForm() {
         </div>
 
         <div className="password">
-          <label htmlFor="password">Password: </label>
+          <label htmlFor="password">{t('password')}: </label>
           <input
             id="password"
-            placeholder="Enter password"
+            placeholder={t('password')}
             type="password"
             {...register('password')}
           />
           <p>{errors.password?.message}</p>
         </div>
         <div className="password">
-          <label htmlFor="ConfirmPassword">Confirm password: </label>
+          <label htmlFor="ConfirmPassword">{t('confirm-password')}: </label>
           <input
             id="ConfirmPassword"
             type="password"
-            placeholder="Confirm password"
+            placeholder={t('confirm-password')}
             {...register('ConfirmPassword')}
           />
           <p>{errors.ConfirmPassword?.message}</p>
         </div>
 
         <div className={style.gender}>
-          <label htmlFor="gender">Gender: </label>
+          <label htmlFor="gender">{t('gender')}: </label>
           <label>
             <input type="radio" value="male" {...register('gender')} />
-            {' male'}
+            {t('male')}
           </label>
 
           <label>
             <input type="radio" value="female" {...register('gender')} />
-            {' female'}
+            {t('female')}
           </label>
           <p>{errors.gender?.message}</p>
         </div>
 
         <div className="country">
-          <label htmlFor="country">Country: </label>
+          <label htmlFor="country">{t('country')}: </label>
           <input
             id="country"
             list="country-list"
-            placeholder="Select country"
+            placeholder={t('country')}
             {...register('country')}
           />
           <datalist id="country-list">
-            {countryList.map((country) => (
-              <option key={country.cca2} value={country.country}>
-                {country.flag} {country.cca2} {country.countryRus}
-              </option>
-            ))}
+            {countryList.map((country) => {
+              const countryName =
+                t('country') === 'Country'
+                  ? country.country
+                  : country.countryRus;
+              return <option key={country.cca2} value={countryName}></option>;
+            })}
           </datalist>
           <p>{errors.country?.message}</p>
         </div>
 
         <div>
           <label className="add_img" htmlFor="file">
-            {(file as FileList)?.[0]?.name || 'Add Image'}
+            {(file as FileList)?.[0]?.name || t('Add-Image')}
           </label>
           <input
             type="file"
@@ -136,7 +139,7 @@ export default function ReactForm() {
         <div className={style.agree}>
           <label htmlFor="Agree">
             <input id="Agree" type="checkbox" {...register('agree')} />
-            <span> Agree with T&C</span>
+            <span>{t('tc')}</span>
           </label>
           <p>{errors.agree?.message}</p>
         </div>
@@ -144,8 +147,8 @@ export default function ReactForm() {
         <input
           className={style.submit}
           type="submit"
-          value="Submit"
-          disabled={!agree || Object.keys(errors).length > 0}
+          value={t('submit')}
+          disabled={Object.keys(errors).length > 0}
         />
       </form>
     </div>

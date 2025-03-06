@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+.local {
+  cursor: pointer;
+  align-content: center;
+}
+
+.theme {
+  cursor: pointer;
+  font-size: 2rem;
+}

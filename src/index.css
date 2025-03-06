@@ -6,19 +6,43 @@
   color: inherit;
 }
 
-.active {
-  color: red;
+
+.dark {
+  --color-Bg: #1a1a1ab9;
+  --color-Text: #ffffff;
+  --color-Btn: #b3b3b372;
+  --color-input: #323232eb;
+  color: var(--color-Text);
 }
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+.light {
+  --color-Bg: #dbdbdb;
+  --color-Text: #000000;
+  --color-Btn: #47474741;
+  --color-input: #ffffff;
+  color: var(--color-Text);
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+}
+
+#root {
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+}
+
+.active {
+  color: rgb(255, 132, 0);
+  font-weight: 700;
+
 }
 input[type="submit"],
 .add_img,
@@ -29,61 +53,18 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-Btn) !important;
   cursor: pointer;
   transition: border-color 0.25s;
   text-align: center;
 }
-
 [type="submit"]:hover,
 .add_img:hover,
 button:hover {
-  border-color: #646cff;
+  border-color: var(--color-Text);
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-input[type="submit"]{
-  background-color: #c3c3c3;
-}
-  .add_img,
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-.heder {
-  height: 50px;
-  display: flex;
-  justify-content: space-around;
-  text-transform: uppercase;
-  align-items: center;
-  background: #8181811b;
-}
-
-.container_app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.form {
-  min-width: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  margin: 10px;
-  border: 1px solid #0000009b;
-  border-radius: 10px;
-  background: #8181811b;
-}
-
+select,
 input {
   border-radius: 5px;
-
+  background: var(--color-input);
 }

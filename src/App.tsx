@@ -1,25 +1,37 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './store/store';
 import { delForm } from './store/features/dataFormSlice';
+import t from './Context/locales';
+import s from './App.module.css';
 
 export default function App() {
   const { dataForm } = useSelector((state: RootState) => state.dataForm);
   const dispatch = useDispatch();
   return (
-    <div className="container_app">
-      {dataForm.length === 0 && <h2>No data. Please fill out the form.</h2>}
+    <div className={s.container}>
+      {dataForm.length === 0 && <h2 className={s.title}>{t('No-data')}</h2>}
       {dataForm.map((item) => {
         return (
-          <div className="form" key={item.id}>
-            <p>Name: {item.name}</p>
-            <p>Age:{item.age}</p>
-            <p>Email: {item.email}</p>
-            <p>country: {item.country}</p>
+          <div className={s.form} key={item.id}>
+            <p>
+              {t('name')}: {item.name}
+            </p>
+            <p>
+              {t('age')}:{item.age}
+            </p>
+            <p>
+              {t('email')}: {item.email}
+            </p>
+            <p>
+              {t('country')}: {item.country}
+            </p>
             <p>
               {item.flag} {item.cca2} {item.countryRus}
             </p>
             <img src={item.file as string} alt={item.name} width={100} />
-            <button onClick={() => dispatch(delForm(item.id))}>Delete</button>
+            <button onClick={() => dispatch(delForm(item.id))}>
+              {t('delete')}
+            </button>
           </div>
         );
       })}

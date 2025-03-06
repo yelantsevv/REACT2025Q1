@@ -35,7 +35,11 @@ export const schema = yup
         originalValue.trim() === '' ? undefined : value
       )
       .oneOf(
-        [...countryList.map((country) => country.country)],
+        [
+          ...countryList.flatMap((country) => {
+            return [country.country, country.countryRus];
+          }),
+        ],
         'Invalid country'
       )
       .required('Country is required'),
