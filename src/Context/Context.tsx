@@ -7,4 +7,4 @@ type Context = {
   toggleLocal: () => void;
 };
 
-export const ThemeContext = createContext({} as Context);
+export const Context = createContext({} as Context);

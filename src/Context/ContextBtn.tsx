@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { ThemeContext } from './Context';
+import { Context } from './Context';
 import s from './Theme.module.css';
 
 export default function ThemeBtn() {
-  const context = useContext(ThemeContext);
+  const context = useContext(Context);
   if (!context) throw new Error('ThemeProvider Error');
   const { theme, toggleTheme, local, toggleLocal } = context;
 

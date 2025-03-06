@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { ThemeContext } from './Context';
-// import s from './Theme.module.css';
-import '../index.css';
+import { Context } from './Context';
 
 type Theme = 'light' | 'dark';
 type Props = {
@@ -21,8 +19,8 @@ export default function Theme({ children }: Props) {
     setLocal(newTheme);
   };
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, local, toggleLocal }}>
+    <Context.Provider value={{ theme, toggleTheme, local, toggleLocal }}>
       <div className={theme}>{children}</div>
-    </ThemeContext.Provider>
+    </Context.Provider>
   );
 }

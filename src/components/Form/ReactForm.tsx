@@ -1,14 +1,15 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormData, schema } from '../schema';
-import style from './Form.module.css';
+import s from './Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { addForm } from '../../store/features/dataFormSlice';
 import { useNavigate } from 'react-router';
 import useImage from '../useImage';
-import t from '../../Context/locales';
+import locales from '../../Context/locales';
 export default function ReactForm() {
+  const t = locales();
   const {
     watch,
     register,
@@ -32,24 +33,24 @@ export default function ReactForm() {
     navigate('/');
   };
   return (
-    <div className={style.form}>
+    <div className={s.form}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="name">
-          <label htmlFor="name">{t('name')}</label>
+          <label htmlFor="name">{t.name}</label>
           <input
             id="name"
             type="text"
-            placeholder={t('name')}
+            placeholder={t.name}
             {...register('name')}
           />
           <p>{errors.name?.message}</p>
         </div>
 
         <div className="age">
-          <label htmlFor="age">{t('age')}: </label>
+          <label htmlFor="age">{t.age}: </label>
           <input
             id="age"
-            placeholder={t('age')}
+            placeholder={t.age}
             type="number"
             {...register('age')}
           />
@@ -68,54 +69,52 @@ export default function ReactForm() {
         </div>
 
         <div className="password">
-          <label htmlFor="password">{t('password')}: </label>
+          <label htmlFor="password">{t.password}: </label>
           <input
             id="password"
-            placeholder={t('password')}
+            placeholder={t.password}
             type="password"
             {...register('password')}
           />
           <p>{errors.password?.message}</p>
         </div>
         <div className="password">
-          <label htmlFor="ConfirmPassword">{t('confirm-password')}: </label>
+          <label htmlFor="ConfirmPassword">{t.confirmPassword}: </label>
           <input
             id="ConfirmPassword"
             type="password"
-            placeholder={t('confirm-password')}
+            placeholder={t.confirmPassword}
             {...register('ConfirmPassword')}
           />
           <p>{errors.ConfirmPassword?.message}</p>
         </div>
 
-        <div className={style.gender}>
-          <label>{t('gender')}: </label>
+        <div className={s.gender}>
+          <label>{t.gender}: </label>
           <label>
             <input type="radio" value="male" {...register('gender')} />
-            {t('male')}
+            {t.male}
           </label>
 
           <label>
             <input type="radio" value="female" {...register('gender')} />
-            {t('female')}
+            {t.female}
           </label>
           <p>{errors.gender?.message}</p>
         </div>
 
         <div className="country">
-          <label htmlFor="country">{t('country')}: </label>
+          <label htmlFor="country">{t.country}: </label>
           <input
             id="country"
             list="country-list"
-            placeholder={t('country')}
+            placeholder={t.country}
             {...register('country')}
           />
           <datalist id="country-list">
             {countryList.map((country) => {
               const countryName =
-                t('country') === 'Country'
-                  ? country.country
-                  : country.countryRus;
+                t.country === 'Country' ? country.country : country.countryRus;
               return <option key={country.cca2} value={countryName}></option>;
             })}
           </datalist>
@@ -124,7 +123,7 @@ export default function ReactForm() {
 
         <div>
           <label className="add_img" htmlFor="file">
-            {(file as FileList)?.[0]?.name || t('Add-Image')}
+            {(file as FileList)?.[0]?.name || t.AddImage}
           </label>
           <input
             type="file"
@@ -136,18 +135,18 @@ export default function ReactForm() {
           <p>{errors.file?.message}</p>
         </div>
 
-        <div className={style.agree}>
+        <div className={s.agree}>
           <label htmlFor="Agree">
             <input id="Agree" type="checkbox" {...register('agree')} />
-            <span>{t('tc')}</span>
+            <span>{t.tc}</span>
           </label>
           <p>{errors.agree?.message}</p>
         </div>
 
         <input
-          className={style.submit}
+          className={s.submit}
           type="submit"
-          value={t('submit')}
+          value={t.submit}
           disabled={Object.keys(errors).length > 0}
         />
       </form>
