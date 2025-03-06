@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { FormData } from '../../components/ReactForm/schema';
+import { FormData } from '../../components/schema';
 import { Country } from './countrySlice';
 
 type FormsState = (FormData & Country & { id: number })[];

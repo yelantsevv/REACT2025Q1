@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormData, schema } from './schema';
-import style from './reactForm.module.css';
+import { FormData, schema } from '../schema';
+import style from './Form.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { addForm } from '../../store/features/dataFormSlice';
@@ -89,7 +89,7 @@ export default function ReactForm() {
         </div>
 
         <div className={style.gender}>
-          <label htmlFor="gender">{t('gender')}: </label>
+          <label>{t('gender')}: </label>
           <label>
             <input type="radio" value="male" {...register('gender')} />
             {t('male')}

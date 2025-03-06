@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { countryList } from '../../store/db';
+import { countryList } from '../store/db';
 
 export const schema = yup
   .object({
@@ -61,3 +61,5 @@ export const schema = yup
   .required();
 
 export type FormData = yup.InferType<typeof schema>;
+export type Keys = keyof FormData;
+export type Errors = Partial<Record<Keys, string>>;
