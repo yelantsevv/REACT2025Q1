@@ -1,0 +1,12 @@
+.cardList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.pagination {
+  composes: btn from '../../app/App.module.css';
+  cursor: auto;
+  padding: 0;
+}

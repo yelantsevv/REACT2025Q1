@@ -1,0 +1,19 @@
+.light {
+  background-color: var(--color-Bg);
+  --color-Bg: #ffffff;
+  --color-Text: #000000;
+  --color-Btn: #f1f1f1;
+  --color-Active: rgb(255, 220, 220);
+  --color-Btn-Hover: #eaeaea;
+  --color-Error: #ff0000;
+}
+
+.dark {
+  background-color: var(--color-Bg);
+  --color-Bg: #424242;
+  --color-Text: #ffffff;
+  --color-Btn: #656565;
+  --color-Active: rgb(140, 111, 111);
+  --color-Btn-Hover: #7a7a7a;
+  --color-Error: #ff0000;
+}

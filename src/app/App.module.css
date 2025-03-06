@@ -1,0 +1,52 @@
+.app {
+  margin: 0 auto;
+  max-width: 1200px;
+  min-height: 100vh;
+  border-left: 1px dashed var(--color-Text);
+  border-right: 1px dashed var(--color-Text);
+  background: var(--color-Bg);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px dashed var(--color-Text);
+}
+
+.themeBtn,
+.btn {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem;
+  background-color: var(--color-Btn);
+  color: var(--color-Text);
+  transition: all 0.3s ease-out;
+  text-align: center;
+  border: dashed 1px var(--color-Text);
+  margin: 0.5rem;
+
+  &:hover {
+    background-color: var(--color-Btn-Hover);
+    color: var(--color-Text);
+  }
+}
+
+.themeBtn {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerLoading {
+  display: flex;
+  justify-content: center;
+}
