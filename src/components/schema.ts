@@ -17,6 +17,10 @@ export const schema = yup
     email: yup.string().email('Invalid email address').required(),
     password: yup
       .string()
+      .matches(/[A-Z]/, 'Password must contain 1 capital letter')
+      .matches(/[a-z]/, 'Password must contain 1 lowercase letter')
+      .matches(/[0-9]/, 'Password must contain 1 digit')
+      .matches(/[\W_]/, 'Password must contain 1 special character')
       .min(8, 'Password must be at least 8 characters')
       .required(),
     ConfirmPassword: yup
