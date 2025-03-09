@@ -12,8 +12,9 @@ export default function App() {
     <div className={s.container}>
       {dataForm.length === 0 && <h2 className={s.title}>{t.NoData}</h2>}
       {dataForm.map((item) => {
+        const newForm = item.id + 5000 > Date.now() ? 'new' : '';
         return (
-          <div className={s.form} key={item.id}>
+          <div className={s.form + ' ' + s[newForm]} key={item.id}>
             <p>
               {t.name}: {item.name}
             </p>
