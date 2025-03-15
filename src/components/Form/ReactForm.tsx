@@ -11,7 +11,6 @@ import locales from '../../Context/locales';
 export default function ReactForm() {
   const t = locales();
   const {
-    watch,
     register,
     handleSubmit,
     formState: { errors },
@@ -22,8 +21,7 @@ export default function ReactForm() {
   const countryList = useSelector((state: RootState) => state.country);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [fileImage, setImage] = useImage();
-  const file = watch('file');
+  const [fileImage, setImage, nameFile] = useImage();
   const onSubmit = (data: FormData) => {
     const country = countryList.find(
       (item) =>
@@ -123,7 +121,7 @@ export default function ReactForm() {
 
         <div>
           <label className="add_img" htmlFor="file">
-            {(file as FileList)?.[0]?.name || t.AddImage}
+            {nameFile || t.AddImage}
           </label>
           <input
             type="file"

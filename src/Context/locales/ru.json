@@ -1,6 +1,7 @@
 {
-  "unControl": "Не контролируемая форма",
-  "reactForm": "Реакт Хук Форм",
+  "reactForm": "Контролируемая Реакт Хук Форм",
+  "unControlRef": "Не контролируемая форма Ref",
+  "UnControlFormData": "Не контролируемая форма FormData",
   "name": "Имя",
   "age": "Возраст",
   "email": "Email",

@@ -1,6 +1,7 @@
 {
-  "unControl": "Uncontrolled form",
-  "reactForm": "React Hook Form",
+  "reactForm": "Controlled React Hook Form",
+  "unControlRef": "Uncontrolled form Ref",
+  "UnControlFormData": "UnControl FormData",
   "name": "Name",
   "age": "Age",
   "email": "Email",

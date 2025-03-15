@@ -9,8 +9,9 @@ export default function Heder() {
     <>
       <div className={s.heder}>
         <NavLink to="/">{t.form}</NavLink>
-        <NavLink to="/un-control">{t.unControl}</NavLink>
         <NavLink to="/react-form">{t.reactForm}</NavLink>
+        <NavLink to="/un-control">{t.unControlRef}</NavLink>
+        <NavLink to="/form-data">{t.UnControlFormData}</NavLink>
         <ContextBtn />
       </div>
       <Outlet />

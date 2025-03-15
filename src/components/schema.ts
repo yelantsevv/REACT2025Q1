@@ -54,7 +54,7 @@ export const schema = yup
         return (
           value &&
           ['image/png', 'image/jpeg', 'image/jpg'].includes(
-            (value as FileList)?.[0]?.type
+            (value as FileList)?.[0]?.type || (value as File).type
           )
         );
       })
