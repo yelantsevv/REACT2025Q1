@@ -1,0 +1,10 @@
+.heder {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+  align-items: center;
+  background: var(--color-Bg);
+  padding: 0 50px;
+  border-radius: 0 0 10px 10px;
+}

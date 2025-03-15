@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: calc(100vh - 50px);
+}
+
+.form {
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #0000009b;
+  border-radius: 10px;
+  background: var(--color-input);
+}
+
+.new {
+  border-color: red;
+}
+
+.title {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: var(--color-Bg);
+}
