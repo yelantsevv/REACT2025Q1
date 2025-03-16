@@ -1,0 +1,21 @@
+.container {
+  position: fixed;
+  inset: 0;
+  background-color: #88888817;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+
+  &>.card {
+    background-color: white;
+    width: 90vw;
+    height: 90vh;
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
+.star{
+  width: fit-content;
+  cursor: pointer;
+}

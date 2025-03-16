@@ -112,7 +112,7 @@
   }
 
   &::-webkit-scrollbar-track {
-    background: linear-gradient(to bottom, #c4c4c4 0%, #f1f1f1 100%);
+    background: linear-gradient(to bottom, #c4c4c4 0%, #ffffff 100%);
 
   }
 
@@ -125,4 +125,13 @@
     background: #555;
   }
 
+}
+
+.visited {
+  background-color: #a4ffa7 !important;
+}
+
+.name_list {
+  display: flex;
+  justify-content: space-between;
 }
