@@ -5,6 +5,7 @@ import List from './components/List';
 import Population from './components/Population';
 import Region from './components/Region';
 import Name from './components/Name';
+import Capital from './components/Capital';
 
 const response: Promise<Country[]> = axios
   .get('https://restcountries.com/v3.1/all')
@@ -21,7 +22,12 @@ function App() {
           <tr className="table-header">
             <th>Flag</th>
             <Name dataCountry={dataCountry} data={data} setData={setData} />
-            <th className="capital">Capital</th>
+            <Capital
+              className="capital"
+              dataCountry={dataCountry}
+              data={data}
+              setData={setData}
+            />
             <Region
               className="region"
               dataCountry={dataCountry}
