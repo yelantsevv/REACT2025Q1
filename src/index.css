@@ -47,6 +47,20 @@
 .capital {
   width: 30%;
   text-align: center;
+  &>div {
+    display: inline-block;
+    width: fit-content;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  &>input {
+    display: inline-block;
+    height: 1.5rem;
+    font-size: 1rem;
+    padding: 0 10px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
 }
 
 .flag {

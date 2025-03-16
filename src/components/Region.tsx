@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Country } from './type';
+import { Country } from '../type';
 
 type RegionProps = {
   className: string;

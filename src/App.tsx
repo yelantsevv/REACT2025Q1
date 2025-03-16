@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { use, useState } from 'react';
 import { Country } from './type';
-import List from './List/List';
-import Population from './Population';
-import Region from './Region';
+import List from './components/List';
+import Population from './components/Population';
+import Region from './components/Region';
+import Name from './components/Name';
 
 const response: Promise<Country[]> = axios
   .get('https://restcountries.com/v3.1/all')
@@ -19,7 +20,7 @@ function App() {
         <thead>
           <tr className="table-header">
             <th>Flag</th>
-            <th className="name">Name</th>
+            <Name dataCountry={dataCountry} data={data} setData={setData} />
             <th className="capital">Capital</th>
             <Region
               className="region"

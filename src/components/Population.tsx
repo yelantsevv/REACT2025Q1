@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Country } from './type';
+import { Country } from '../type';
 
 type PopulationProps = {
   className: string;
@@ -30,7 +30,7 @@ export default function Population({
   return (
     <th className={className}>
       <div onClick={toggleSortOrder}>
-        Population {population === '123' ? '▲' : '▼'}
+        {population === '123' ? '▲' : '▼'} Population
       </div>
     </th>
   );
