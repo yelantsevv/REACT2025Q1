@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { use, useState } from 'react';
 import { Country } from './type';
 import List from './components/List';
@@ -7,14 +6,13 @@ import Region from './components/Region';
 import Name from './components/Name';
 import Capital from './components/Capital';
 
-const response: Promise<Country[]> = axios
-  .get('https://restcountries.com/v3.1/all')
-  .then((res) => res.data);
+const json: Promise<Country[]> = fetch(
+  'https://restcountries.com/v3.1/all'
+).then((res) => res.json());
 
 function App() {
-  const dataCountry = use(response);
+  const dataCountry = use(json);
   const [data, setData] = useState(dataCountry);
-
   return (
     <div className="table-container">
       <table className="country-table">
