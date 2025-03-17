@@ -15,18 +15,9 @@ function App() {
         <thead>
           <tr className="table-header">
             <th>Flag</th>
-            <Name dataCountry={dataCountry} data={data} setData={setData} />
-            <Capital
-              className="capital"
-              dataCountry={dataCountry}
-              data={data}
-              setData={setData}
-            />
-            <Region
-              className="region"
-              dataCountry={dataCountry}
-              setData={setData}
-            />
+            <Name className="name" data={data} setData={setData} />
+            <Capital className="capital" data={data} setData={setData} />
+            <Region className="region" setData={setData} />
             <Population className="population" data={data} setData={setData} />
           </tr>
         </thead>

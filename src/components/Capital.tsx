@@ -1,19 +1,9 @@
-import { useState } from 'react';
-import { Country } from '../type';
+import { use, useState } from 'react';
+import { Props } from '../type';
+import { json } from '../api';
 
-type NameProps = {
-  className: string;
-  dataCountry: Country[];
-  data: Country[];
-  setData: (data: Country[]) => void;
-};
-
-export default function Capital({
-  className,
-  dataCountry,
-  data,
-  setData,
-}: NameProps) {
+export default function Capital({ className, data, setData }: Props) {
+  const dataCountry = use(json);
   const [capitalSort, setCapitalSort] = useState('abc');
   const [capital, setCapital] = useState('');
   const [capitalOpen, setCapitalOpen] = useState(false);

@@ -11,5 +11,5 @@ export function useLocalStorage(key: string) {
     localStorage.setItem(key, JSON.stringify([...SetCountry]));
   }
 
-  return { stor, addStor, delStor } as const;
+  return { stor, addStor, delStor };
 }

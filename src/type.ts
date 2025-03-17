@@ -1,3 +1,9 @@
+export type Props = {
+  className?: string;
+  data: Country[];
+  setData: (data: Country[]) => void;
+};
+
 export type Country = {
   name: {
     common: string;

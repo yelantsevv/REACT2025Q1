@@ -1,13 +1,9 @@
-import { useState } from 'react';
-import { Country } from '../type';
+import { use, useState } from 'react';
+import { Props } from '../type';
+import { json } from '../api';
 
-type NameProps = {
-  dataCountry: Country[];
-  data: Country[];
-  setData: (data: Country[]) => void;
-};
-
-export default function Name({ dataCountry, data, setData }: NameProps) {
+export default function Name({ className, data, setData }: Props) {
+  const dataCountry = use(json);
   const [name, setName] = useState('abc');
 
   function filterName(e: React.ChangeEvent<HTMLInputElement>) {
@@ -32,7 +28,7 @@ export default function Name({ dataCountry, data, setData }: NameProps) {
   };
 
   return (
-    <th className="name">
+    <th className={className}>
       <div onClick={toggleSortOrder}>{name === 'abc' ? '▲' : '▼'} Name:</div>
       <input list="country-list" placeholder="name" onChange={filterName} />
       <datalist id="country-list">

@@ -1,17 +1,7 @@
 import { useState } from 'react';
-import { Country } from '../type';
+import { Props } from '../type';
 
-type PopulationProps = {
-  className: string;
-  data: Country[];
-  setData: (data: Country[]) => void;
-};
-
-export default function Population({
-  className,
-  data,
-  setData,
-}: PopulationProps) {
+export default function Population({ className, data, setData }: Props) {
   const [population, setPopulation] = useState('123');
 
   const toggleSortOrder = () => {

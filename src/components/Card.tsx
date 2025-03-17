@@ -12,8 +12,8 @@ export default function Card({
   setCardShow: (showModal: boolean) => void;
 }) {
   const dataCountry: Country[] = use(json);
-
   const { addStor } = useLocalStorage('country');
+
   function helper(e: React.MouseEvent<HTMLDivElement>) {
     if (e.target === e.currentTarget) {
       setCardShow(false);

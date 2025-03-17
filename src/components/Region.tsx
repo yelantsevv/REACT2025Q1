@@ -1,17 +1,9 @@
-import { useState } from 'react';
-import { Country } from '../type';
+import { use, useState } from 'react';
+import { Props } from '../type';
+import { json } from '../api';
 
-type RegionProps = {
-  className: string;
-  dataCountry: Country[];
-  setData: (data: Country[]) => void;
-};
-
-export default function Region({
-  className,
-  dataCountry,
-  setData,
-}: RegionProps) {
+export default function Region({ className, setData }: Omit<Props, 'data'>) {
+  const dataCountry = use(json);
   const [region, setRegion] = useState('All');
 
   const RegionArr = [...new Set(dataCountry.map((item) => item.region))];
