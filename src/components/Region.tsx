@@ -1,8 +1,8 @@
-import { use, useState } from 'react';
+import { memo, use, useState } from 'react';
 import { Props } from '../type';
 import { json } from '../api';
 
-export default function Region({ className, setData }: Omit<Props, 'data'>) {
+function Region({ className, setData }: Omit<Props, 'data'>) {
   const dataCountry = use(json);
   const [region, setRegion] = useState('All');
 
@@ -44,3 +44,6 @@ export default function Region({ className, setData }: Omit<Props, 'data'>) {
     </th>
   );
 }
+
+// export default Region;
+export default memo(Region);

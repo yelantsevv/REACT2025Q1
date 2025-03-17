@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Country } from '../type';
 import Card from './Card';
 import { createPortal } from 'react-dom';
 import { useLocalStorage } from '../useLocalStorage';
 
-export default function List({ country }: { country: Country }) {
+function List({ country }: { country: Country }) {
   const [cardShow, setCardShow] = useState(false);
   const { stor } = useLocalStorage('country');
+  // console.log("🚀 ~ List:", country.name.common)
   return (
     <>
       <tr
@@ -28,3 +29,6 @@ export default function List({ country }: { country: Country }) {
     </>
   );
 }
+
+// export default List;
+export default memo(List);

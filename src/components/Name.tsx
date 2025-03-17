@@ -1,8 +1,8 @@
-import { use, useState } from 'react';
+import { memo, use, useState } from 'react';
 import { Props } from '../type';
 import { json } from '../api';
 
-export default function Name({ className, data, setData }: Props) {
+function Name({ className, data, setData }: Props) {
   const dataCountry = use(json);
   const [name, setName] = useState('abc');
 
@@ -39,3 +39,8 @@ export default function Name({ className, data, setData }: Props) {
     </th>
   );
 }
+
+// export default Name;
+export default memo(Name, (prev, next) => {
+  return prev.data.length === next.data.length;
+});

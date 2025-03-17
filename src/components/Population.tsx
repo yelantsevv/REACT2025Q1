@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Props } from '../type';
 
-export default function Population({ className, data, setData }: Props) {
+function Population({ className, data, setData }: Props) {
   const [population, setPopulation] = useState('123');
 
   const toggleSortOrder = () => {
@@ -25,3 +25,8 @@ export default function Population({ className, data, setData }: Props) {
     </th>
   );
 }
+
+// export default Population;
+export default memo(Population, (prev, next) => {
+  return prev.data.length === next.data.length;
+});

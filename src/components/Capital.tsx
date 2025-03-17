@@ -1,8 +1,8 @@
-import { use, useState } from 'react';
+import { memo, use, useState } from 'react';
 import { Props } from '../type';
 import { json } from '../api';
 
-export default function Capital({ className, data, setData }: Props) {
+function Capital({ className, data, setData }: Props) {
   const dataCountry = use(json);
   const [capitalSort, setCapitalSort] = useState('abc');
   const [capital, setCapital] = useState('');
@@ -67,3 +67,8 @@ export default function Capital({ className, data, setData }: Props) {
     </th>
   );
 }
+
+// export default Capital;
+export default memo(Capital, (prev, next) => {
+  return prev.data.length === next.data.length;
+});

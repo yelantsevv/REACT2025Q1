@@ -1,10 +1,10 @@
-import { use } from 'react';
+import { memo, use } from 'react';
 import { Country } from '../type';
 import { useLocalStorage } from '../useLocalStorage';
 import s from './Card.module.css';
 import DeleteVisit from './DeleteVisit';
 import { json } from '../api';
-export default function Card({
+function Card({
   country,
   setCardShow,
 }: {
@@ -33,7 +33,7 @@ export default function Card({
         <div className={s.imgContainer}>
           <img
             className={s.img}
-            src={country.flags.png}
+            src={country.flags.svg}
             alt={country.name.common}
           />
           <img
@@ -69,3 +69,6 @@ export default function Card({
     </div>
   );
 }
+
+// export default Card;
+export default memo(Card);

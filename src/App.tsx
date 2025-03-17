@@ -7,8 +7,7 @@ import Capital from './components/Capital';
 import { json } from './api';
 
 function App() {
-  const dataCountry = use(json);
-  const [data, setData] = useState(dataCountry);
+  const [data, setData] = useState(use(json));
   return (
     <div className="table-container">
       <table className="country-table">
