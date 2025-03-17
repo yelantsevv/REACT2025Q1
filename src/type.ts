@@ -29,6 +29,7 @@ export type Country = {
   capital: string[];
   altSpellings: string[];
   region: string;
+  subregion?: string;
   languages: {
     [key: string]: string;
   };
@@ -40,6 +41,7 @@ export type Country = {
   };
   latlng: [number, number];
   landlocked: boolean;
+  borders: string[];
   area: number;
   demonyms: {
     [key: string]: {
@@ -63,7 +65,10 @@ export type Country = {
     png: string;
     svg: string;
   };
-  coatOfArms: Record<string, unknown>;
+  coatOfArms: {
+    png: string;
+    svg: string;
+  };
   startOfWeek: string;
   capitalInfo: {
     latlng: [number, number];

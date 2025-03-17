@@ -1,14 +1,10 @@
 import { use, useState } from 'react';
-import { Country } from './type';
 import List from './components/List';
 import Population from './components/Population';
 import Region from './components/Region';
 import Name from './components/Name';
 import Capital from './components/Capital';
-
-const json: Promise<Country[]> = fetch(
-  'https://restcountries.com/v3.1/all'
-).then((res) => res.json());
+import { json } from './api';
 
 function App() {
   const dataCountry = use(json);
@@ -40,7 +36,6 @@ function App() {
           ))}
         </tbody>
       </table>
-      {/* <pre>{JSON.stringify(data[200], null, 2)}</pre> */}
     </div>
   );
 }
