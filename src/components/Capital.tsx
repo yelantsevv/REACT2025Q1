@@ -1,33 +1,40 @@
-import { memo, use, useState } from 'react';
+import { memo, use, useState, useCallback, useMemo, useEffect } from 'react';
 import { Props } from '../type';
 import { json } from '../api';
 
 function Capital({ className, data, setData }: Props) {
   const dataCountry = use(json);
-  const [capitalSort, setCapitalSort] = useState('abc');
+  const [capitalSort, setCapitalSort] = useState<'abc' | 'desc'>('abc');
   const [capital, setCapital] = useState('');
   const [capitalOpen, setCapitalOpen] = useState(false);
 
-  function filterName(e: React.ChangeEvent<HTMLInputElement>) {
-    const sortName = dataCountry.filter((item) =>
-      item.capital?.[0].toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    setCapital(e.target.value);
-    setData(sortName);
-  }
+  const filterName = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      const filtered = dataCountry.filter((item) =>
+        item.capital?.[0].toLowerCase().includes(value.toLowerCase())
+      );
+      setCapital(value);
+      setData(filtered);
+    },
+    [dataCountry, setData]
+  );
 
   const toggleSortOrder = () => {
     setCapitalSort(capitalSort === 'abc' ? 'desc' : 'abc');
-
-    const dataNew = data.toSorted((a, b) => {
-      if (capitalSort === 'abc') {
-        return a.capital?.[0].localeCompare(b.capital?.[0]);
-      } else {
-        return b.capital?.[0].localeCompare(a.capital?.[0]);
-      }
-    });
-    setData(dataNew);
   };
+
+  const sortedData = useMemo(() => {
+    return data.toSorted((a, b) => {
+      return capitalSort === 'abc'
+        ? a.capital?.[0].localeCompare(b.capital?.[0])
+        : b.capital?.[0].localeCompare(a.capital?.[0]);
+    });
+  }, [data, capitalSort]);
+
+  useEffect(() => {
+    setData(sortedData);
+  }, [sortedData, setData]);
 
   function selectCapital(capital: string) {
     const sortName = dataCountry.filter((item) =>
@@ -68,7 +75,7 @@ function Capital({ className, data, setData }: Props) {
   );
 }
 
-// export default Capital;
-export default memo(Capital, (prev, next) => {
-  return prev.data.length === next.data.length;
-});
+export default memo(
+  Capital,
+  (prev, next) => prev.data.length === next.data.length
+);
