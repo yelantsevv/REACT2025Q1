@@ -19,7 +19,6 @@ function Region({ className, setData }: Omit<Props, 'data'>) {
       return item.region === region;
     });
     setRegion(region);
-
     setData(data);
   };
   return (

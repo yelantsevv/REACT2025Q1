@@ -2,21 +2,19 @@ import { memo, use } from 'react';
 import { Country } from '../type';
 import { useLocalStorage } from '../useLocalStorage';
 import s from './Card.module.css';
-import DeleteVisit from './DeleteVisit';
 import { json } from '../api';
-function Card({
-  country,
-  setCardShow,
-}: {
+
+type Props = {
   country: Country;
-  setCardShow: (showModal: boolean) => void;
-}) {
-  const dataCountry: Country[] = use(json);
-  const { addStor } = useLocalStorage('country');
+  setCardShow: () => void;
+};
+function Card({ country, setCardShow }: Props) {
+  const dataCountry = use(json);
+  const { addStor, delStor } = useLocalStorage('country');
 
   function helper(e: React.MouseEvent<HTMLDivElement>) {
     if (e.target === e.currentTarget) {
-      setCardShow(false);
+      setCardShow();
     }
   }
   function helperBorder(border: string): string[] {
@@ -61,10 +59,18 @@ function Card({
           </div>
         </div>
 
-        <button className={s.close} onClick={() => setCardShow(false)}>
+        <button className={s.close} onClick={() => setCardShow()}>
           ❌
         </button>
-        <DeleteVisit country={country} click={() => setCardShow(false)} />
+        <div
+          className={s.star}
+          onClick={() => {
+            delStor(country.name.common);
+            setCardShow();
+          }}
+        >
+          Delete Visit
+        </div>
       </div>
     </div>
   );

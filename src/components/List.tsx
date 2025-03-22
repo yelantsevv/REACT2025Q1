@@ -1,13 +1,12 @@
 import { memo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Country } from '../type';
 import Card from './Card';
-import { createPortal } from 'react-dom';
 import { useLocalStorage } from '../useLocalStorage';
 
 function List({ country }: { country: Country }) {
   const [cardShow, setCardShow] = useState(false);
   const { stor } = useLocalStorage('country');
-  // console.log("🚀 ~ List:", country.name.common)
   return (
     <>
       <tr
@@ -23,7 +22,7 @@ function List({ country }: { country: Country }) {
 
       {cardShow &&
         createPortal(
-          <Card country={country} setCardShow={setCardShow} />,
+          <Card country={country} setCardShow={() => setCardShow(false)} />,
           document.body
         )}
     </>
