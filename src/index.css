@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: system-ui, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+
+.table-container {
+  margin: 0 auto;
+  max-width: 1200px
+}
+
+.country-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.country-table th,
+.country-table td {
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  text-align: left;
+}
+
+.country-table th {
+  background-color: #f4f4f4;
+}
+
+.country-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.population,
+.region {
+  width: 20%;
+  text-align: center;
+}
+
+.name,
+.capital {
+  width: 30%;
+  text-align: center;
+  position: relative;
+
+  &>div {
+    display: inline-block;
+    /* width: fit-content; */
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  &>div>input,
+  &>input {
+    display: inline-block;
+    height: 1.5rem;
+    font-size: 1rem;
+    padding: 0 10px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+}
+
+.flag {
+  font-size: 1.5rem;
+  text-align: center !important;
+}
+
+.region_option {
+  margin-left: 10px;
+  text-align: center;
+  height: 1.5rem;
+}
+
+
+.table-header {
+  position: sticky;
+  height: 50px;
+  top: 0;
+  background-color: #f4f4f4;
+  z-index: 1;
+}
+
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  max-height: 50vh;
+  overflow-x: auto;
+  border: 1px solid #ccc;
+  border-radius: 0 0 10px 10px;
+  padding: 5px;
+  background: white;
+  width: 100%;
+  z-index: 10;
+  padding: 10px;
+
+  &>:hover {
+    background-color: #f4f4f4;
+  }
+
+  &::-webkit-scrollbar {
+    width: 11px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: linear-gradient(to bottom, #c4c4c4 0%, #ffffff 100%);
+
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+}
+
+.visited {
+  background-color: #a4ffa7 !important;
+}
+
+.name_list {
+  display: flex;
+  justify-content: space-between;
+}
