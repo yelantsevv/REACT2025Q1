@@ -76,5 +76,4 @@ function Card({ country, setCardShow }: Props) {
   );
 }
 
-// export default Card;
 export default memo(Card);

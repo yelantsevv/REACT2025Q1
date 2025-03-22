@@ -40,7 +40,7 @@ function Name({ className, data, setData }: Props) {
   );
 }
 
-// export default Name;
-export default memo(Name, (prev, next) => {
-  return prev.data.length === next.data.length;
-});
+export default memo(
+  Name,
+  (prev, next) => prev.data.length === next.data.length
+);

@@ -26,7 +26,7 @@ function Population({ className, data, setData }: Props) {
   );
 }
 
-// export default Population;
-export default memo(Population, (prev, next) => {
-  return prev.data.length === next.data.length;
-});
+export default memo(
+  Population,
+  (prev, next) => prev.data.length === next.data.length
+);

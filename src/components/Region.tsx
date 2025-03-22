@@ -44,5 +44,4 @@ function Region({ className, setData }: Omit<Props, 'data'>) {
   );
 }
 
-// export default Region;
 export default memo(Region);

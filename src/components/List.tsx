@@ -29,5 +29,4 @@ function List({ country }: { country: Country }) {
   );
 }
 
-// export default List;
 export default memo(List);
